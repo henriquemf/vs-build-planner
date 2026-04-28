@@ -406,6 +406,11 @@
         font-size: 0.8em;
         text-align: center;
       }
+      .love-message {
+        margin-top: 0.5em;
+        color: #f9a;
+        font-style: italic;
+      }
       .socials {
         margin-bottom: 1em;
         display: flex;
@@ -731,6 +736,7 @@
             <a class="social" href="https://vampire-survivors.fandom.com/" target="_blank"><img src="./img/logos/wiki.png" alt="wiki" /></a>
           </div>
           <div>Website is made by <a class="author" href="mailto:danmer.ekb@gmail.com">Danmer</a>, 2022</div>
+          <div class="love-message">Amo você, minha princesa &lt;3</div>
         </footer>
       </main>
     </div>
@@ -748,6 +754,11 @@
           TransitionGroup,
         },
         setup() {
+          console.log(
+            '%cVOCÊ É O AMOR DA MINHA VIDA <3',
+            'font-size:20px; font-weight:bold; color:#ff69b4; background:#1a0010; padding:8px 16px; border-radius:8px; border: 2px solid #ff69b4;'
+          )
+
           const config = useConfig()
 
           const settings = ref(false)

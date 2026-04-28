@@ -1,2 +1,3 @@
-scriptsscripts/src/
+scripts
+scripts/src/
 scripts/extract-unity-icons.py # opcional, se quiser manter privado
