@@ -1055,6 +1055,7 @@ window.vs = {
     { "id": "frozenshade", "name": "Frozenshade",         "emoji": ":question:", "dlc5": true, "itemIds": ["icefang"],                              "description": "Icy spectral creature. Starts with Ice Fang.", "special": true },
     { "id": "kermet",      "name": "Kermet",              "emoji": ":question:", "dlc5": true, "itemIds": ["kermetbubbles"],                        "description": "Ancient evil spirit. Starts with Keremet Bubbles.", "special": true },
     { "id": "joachim",     "name": "Joachim",             "emoji": ":question:", "dlc5": true, "itemIds": ["alucardspear"],                         "description": "Vampire knight who serves no master. Starts with Alucard Spear.", "special": true },
+    { "id": "chaos5",      "name": "Chaos",               "emoji": ":question:", "dlc5": true, "itemIds": [],                                       "description": "The god of chaos. Starts with all 21 Arcanas.", "special": true },
 
     { "id": "tsunanori",   "name": "Tsunanori Mido",      "emoji": ":question:", "dlc6": true, "itemIds": ["fleuret"],                              "description": "Summons up to 4 Kugutsu puppets every 20 levels. Activates Showstopper at critical HP." },
     { "id": "bonnie",      "name": "Bonnie Blair",        "emoji": ":question:", "dlc6": true, "itemIds": ["punch6"],                               "description": "Fights alongside Formina. Gains Might when using Glimmer techs. Activates Showstopper." },
@@ -1692,7 +1693,12 @@ window.vs = {
     { "id": "bullova",          "name": "Bullova",          "emoji": ":question:", "dlc6": true, "description": "Dolores's axe-blade. Evolves into Falconwind.", "rarity": 1 },
     { "id": "glaive6",          "name": "Glaive",           "emoji": ":question:", "dlc6": true, "description": "Lita's glaive. Evolves into Feather Spear chain.", "rarity": 1 },
     { "id": "emeraldrapture",   "name": "Emerald Rapture",  "emoji": ":question:", "dlc6": true, "description": "Rare weapon dropped by a secret boss. Evolves into Emerald Wave.", "rarity": 1 },
-    { "id": "intuition6",       "name": "Intuition",        "emoji": ":question:", "dlc6": true, "description": "DLC selector weapon — choose any Emerald Diorama base weapon.", "rarity": 1 }
+    { "id": "intuition6",       "name": "Intuition",        "emoji": ":question:", "dlc6": true, "description": "DLC selector weapon — choose any Emerald Diorama base weapon.", "rarity": 1 },
+
+    { "id": "chaosrune",    "name": "Chaos Rune",    "emoji": ":question:", "extra": true, "description": "Follower knife. Evolves into Wicked Ruler. Can be found in Extra Content stages.", "rarity": 1 },
+    { "id": "glassfandango", "name": "Glass Fandango", "emoji": ":question:", "extra": true, "description": "Stronger with movement, Orologions, and against frozen enemies. Evolves into Celestial Voulge.", "rarity": 1 },
+    { "id": "santajavelin",  "name": "Santa Javelin",  "emoji": ":question:", "extra": true, "description": "Duration affects Amount. Can deal critical damage. Evolves into Seraphic Cry.", "rarity": 1 },
+    { "id": "gazeofgaea",   "name": "Gaze of Gaea",   "emoji": ":question:", "extra": true, "description": "Mysterious weapon from Extra Content. Evolves into Embrace of Gaea.", "rarity": 1 }
   ],
   "evolutions": [
     {
@@ -2440,7 +2446,16 @@ window.vs = {
     { "id": "falconwind",       "name": "Falconwind",         "emoji": ":question:", "dlc6": true, "itemIds": ["bullova","curse"],        "description": "Evolved Bullova. Falcon-swift wind axe." },
     { "id": "featherspear",     "name": "Feather Spear",      "emoji": ":question:", "dlc6": true, "itemIds": ["glaive6"],                "description": "Evolved Glaive. Light-as-feather divine spear." },
     { "id": "lohengrin",        "name": "Lohengrin",          "emoji": ":question:", "dlc6": true, "itemIds": ["featherspear"],           "description": "Final evolution of Glaive chain. Swan knight's holy lance." },
-    { "id": "emeraldwave",      "name": "Emerald Wave",       "emoji": ":question:", "dlc6": true, "itemIds": ["emeraldrapture","growth"],"description": "Evolved Emerald Rapture. Teleports enemies and drops XP gems." }
+    { "id": "emeraldwave",      "name": "Emerald Wave",       "emoji": ":question:", "dlc6": true, "itemIds": ["emeraldrapture","growth"],"description": "Evolved Emerald Rapture. Teleports enemies and drops XP gems." },
+
+    { "id": "sinestrocustos",  "name": "Sinestro Custos",   "emoji": ":question:", "dlc5": true, "itemIds": ["dextrocustos"],                    "description": "Cornell's second Custos Glyph. Intermediate evolution." },
+    { "id": "centraliscustos", "name": "Centralis Custos",  "emoji": ":question:", "dlc5": true, "itemIds": ["sinestrocustos"],                  "description": "Cornell's third Custos Glyph. Advanced evolution." },
+    { "id": "trinumcustodem",  "name": "Trinum Custodem",   "emoji": ":question:", "dlc5": true, "itemIds": ["centraliscustos"],                 "description": "Cornell's final Custos Glyph. Three glyphs united." },
+
+    { "id": "wickedrider",    "name": "Wicked Ruler",       "emoji": ":question:", "extra": true, "itemIds": ["chaosrune"],               "description": "Evolved Chaos Rune. Exerts control over wild magical forces." },
+    { "id": "celestialvoulge","name": "Celestial Voulge",   "emoji": ":question:", "extra": true, "itemIds": ["glassfandango"],            "description": "Evolved Glass Fandango. Might deal critical damage and freeze enemies." },
+    { "id": "seraphiccry",    "name": "Seraphic Cry",       "emoji": ":question:", "extra": true, "itemIds": ["santajavelin"],             "description": "Evolved Santa Javelin. Critical damage affected by Luck." },
+    { "id": "embraceofgaea",  "name": "Embrace of Gaea",    "emoji": ":question:", "extra": true, "itemIds": ["gazeofgaea","parmaegis"],   "description": "Evolved Gaze of Gaea with Parm Aegis. Protective embrace of the earth." }
   ],
   "counterparts": [
     {
@@ -2740,6 +2755,51 @@ window.vs = {
       "emoji": ":question:",
       "dlc5": true,
       "description": "Increases Charm (+10) and Fever (+10%) per level.",
+      "isPowerUp": true,
+      "rarity": 10
+    },
+    {
+      "id": "chaosmalachite",
+      "name": "Chaos Malachite",
+      "emoji": ":question:",
+      "extra": true,
+      "description": "Chaos Passive. Changes what Chaos evolves into.",
+      "isPowerUp": true,
+      "rarity": 10
+    },
+    {
+      "id": "chaosrosalia",
+      "name": "Chaos Rosalia",
+      "emoji": ":question:",
+      "extra": true,
+      "description": "Chaos Passive. Changes what Chaos evolves into.",
+      "isPowerUp": true,
+      "rarity": 10
+    },
+    {
+      "id": "chaoslazulia",
+      "name": "Chaos Lazulia",
+      "emoji": ":question:",
+      "extra": true,
+      "description": "Chaos Passive. Changes what Chaos evolves into.",
+      "isPowerUp": true,
+      "rarity": 10
+    },
+    {
+      "id": "chaosaltemanna",
+      "name": "Chaos Altemanna",
+      "emoji": ":question:",
+      "extra": true,
+      "description": "Chaos Passive. Changes what Chaos evolves into.",
+      "isPowerUp": true,
+      "rarity": 10
+    },
+    {
+      "id": "emeralddisk",
+      "name": "Emerald Disk",
+      "emoji": ":question:",
+      "dlc6": true,
+      "description": "DLC6 passive item. Emerald Diorama relic.",
       "isPowerUp": true,
       "rarity": 10
     },
