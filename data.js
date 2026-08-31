@@ -569,7 +569,7 @@ window.vs = {
       "name": "Gazebo",
       "emoji": ":question:",
       "itemIds": [
-        "gazegaea"
+        "gazeofgaea"
       ],
       "surname": "",
       "description": "Overhealing by +30 gives a cumulative bonus to a random stat. Move Speed +50%. Unlock: survive 20 minutes in The Coop.",
@@ -1698,7 +1698,7 @@ window.vs = {
       "special": true
     },
     {
-      "id": "chaos",
+      "id": "chaos5",
       "name": "Chaos",
       "emoji": ":question:",
       "dlc5": true,
@@ -1709,7 +1709,7 @@ window.vs = {
       "price": 1048576,
       "special": true
     },
-        { "id": "tsunanori",   "name": "Tsunanori Mido",      "emoji": ":question:", "dlc6": true, "itemIds": ["fleuret"],                              "description": "Summons up to 4 Kugutsu puppets every 20 levels. Activates Showstopper at critical HP." },
+    { "id": "tsunanori",   "name": "Tsunanori Mido",      "emoji": ":question:", "dlc6": true, "itemIds": ["fleuret"],                              "description": "Summons up to 4 Kugutsu puppets every 20 levels. Activates Showstopper at critical HP." },
     { "id": "bonnie",      "name": "Bonnie Blair",        "emoji": ":question:", "dlc6": true, "itemIds": ["punch6"],                               "description": "Fights alongside Formina. Gains Might when using Glimmer techs. Activates Showstopper." },
     { "id": "formina",     "name": "Formina Franklyn",    "emoji": ":question:", "dlc6": true, "itemIds": ["sabermachinegun"],                      "description": "Fights alongside Bonnie. Gains Duration when using Glimmer techs. Activates Showstopper." },
     { "id": "diva5char",   "name": "Diva No. 5",          "emoji": ":question:", "dlc6": true, "itemIds": ["supermissile"],                         "description": "Has 6 different forms with unique stats and weapons. All activate Showstopper." },
@@ -2190,7 +2190,7 @@ window.vs = {
       "tips": "Unlock: cast the spell 'guinigigi'."
     },
     {
-      "id": "gazegaea",
+      "id": "gazeofgaea",
       "name": "Gaze of Gaea",
       "emoji": ":question:",
       "description": "Creates a teardrop-shaped damaging zone in the faced direction. 3% chance to defang enemies. Evolves into Embrace of Gaea.",
@@ -3325,7 +3325,7 @@ window.vs = {
       ]
     },
     {
-      "id": "wickedruler",
+      "id": "wickedrider",
       "name": "Wicked Ruler",
       "emoji": ":question:",
       "itemIds": [
@@ -3337,11 +3337,11 @@ window.vs = {
       "tips": "Requires: Spellbinder."
     },
     {
-      "id": "embracegaea",
+      "id": "embraceofgaea",
       "name": "Embrace of Gaea",
       "emoji": ":question:",
       "itemIds": [
-        "gazegaea",
+        "gazeofgaea",
         "parmaegis"
       ],
       "description": "Evolved Gaze of Gaea. Stationary spinning green zone that rapidly deals damage. Doubled damage while invulnerable. 5% chance to defang enemies.",
@@ -3353,44 +3353,44 @@ window.vs = {
       "name": "Anima of Mortaccio",
       "emoji": ":question:",
       "itemIds": [
-        "bone"
+        "bone",
+        "chaosmalachite"
       ],
       "description": "Evolved Bone. Projectiles accelerate when bouncing.",
-      "rarity": 1,
-      "tips": "Requires: Chaos Malachite."
+      "rarity": 1
     },
     {
       "id": "yattadaikarin",
       "name": "Yatta Daikarin",
       "emoji": ":question:",
       "itemIds": [
-        "cherry"
+        "cherry",
+        "chaosrosalia"
       ],
       "description": "Evolved Cherry Bomb. Generates extra explosions that can deal critical Luck based damage.",
-      "rarity": 1,
-      "tips": "Requires: Chaos Rosalia."
+      "rarity": 1
     },
     {
       "id": "carrozza",
       "name": "Carrozza!",
       "emoji": ":question:",
       "itemIds": [
-        "cart"
+        "cart",
+        "chaoslazulia"
       ],
       "description": "Evolved Carréllo. Duration, Speed, and Area affect damage instead.",
-      "rarity": 1,
-      "tips": "Requires: Chaos Lazulia."
+      "rarity": 1
     },
     {
       "id": "profusionedamore",
       "name": "Profusione D'Amore",
       "emoji": ":question:",
       "itemIds": [
-        "flowers"
+        "flowers",
+        "chaosaltemanna"
       ],
       "description": "Evolved Celestial Dusting. Projectiles generate a chain explosion at fixed intervals.",
-      "rarity": 1,
-      "tips": "Requires: Chaos Altemanna."
+      "rarity": 1
     },
     {
       "id": "gunastrophe",
@@ -4678,6 +4678,51 @@ window.vs = {
       "emoji": ":question:",
       "dlc5": true,
       "description": "Increases Charm (+10) and Fever (+10%) per level.",
+      "isPowerUp": true,
+      "rarity": 10
+    },
+    {
+      "id": "chaosmalachite",
+      "name": "Chaos Malachite",
+      "emoji": ":question:",
+      "extra": true,
+      "description": "Chaos Passive. Changes what Chaos evolves into.",
+      "isPowerUp": true,
+      "rarity": 10
+    },
+    {
+      "id": "chaosrosalia",
+      "name": "Chaos Rosalia",
+      "emoji": ":question:",
+      "extra": true,
+      "description": "Chaos Passive. Changes what Chaos evolves into.",
+      "isPowerUp": true,
+      "rarity": 10
+    },
+    {
+      "id": "chaoslazulia",
+      "name": "Chaos Lazulia",
+      "emoji": ":question:",
+      "extra": true,
+      "description": "Chaos Passive. Changes what Chaos evolves into.",
+      "isPowerUp": true,
+      "rarity": 10
+    },
+    {
+      "id": "chaosaltemanna",
+      "name": "Chaos Altemanna",
+      "emoji": ":question:",
+      "extra": true,
+      "description": "Chaos Passive. Changes what Chaos evolves into.",
+      "isPowerUp": true,
+      "rarity": 10
+    },
+    {
+      "id": "emeralddisk",
+      "name": "Emerald Disk",
+      "emoji": ":question:",
+      "dlc6": true,
+      "description": "DLC6 passive item. Emerald Diorama relic.",
       "isPowerUp": true,
       "rarity": 10
     },

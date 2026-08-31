@@ -309,6 +309,7 @@
         bottom: 0.1em;
         width: 3em;
         height: 3em;
+        background-size: contain;
         background-position: bottom center;
       }
       .object.weapon > .icon,
@@ -627,7 +628,7 @@
           <section v-if="!collapsedSections.characters" style="max-width: 75em">
             <div class="objects">
               <div v-for="character in visibleCharacters" :data-id="character.id" class="object character" :class="{selected: selectedCharacter.id === character.id, special: character.special, dlc1: character.dlc1, dlc2: character.dlc2, dlc3: character.dlc3, dlc4: character.dlc4, dlc5: character.dlc5, dlc6: character.dlc6, dlc7: character.dlc7, dlc8: character.dlc8}" :title="character.title" @click="toggleItem(character)" @mouseenter="onMouseEnter(character)" @mouseleave="onMouseLeave(character)">
-                <div class="icon" :class="`icon-${character.id}`"></div>
+                <div class="icon" :class="`icon-${character.id}`" :style="character.id === hoveredCharId ? { backgroundImage: `url('./img/characters/${character.id}.gif')`, backgroundSize: 'contain', backgroundPosition: 'bottom center' } : {}"></div>
                 <div class="items">
                   <div v-for="item in character.items" class="icon" :class="`icon-${item.id}`" :title="item.title"></div>
                 </div>
@@ -776,6 +777,7 @@
           const collapsedSections = reactive({})
 
           let hoveredId = ''
+          const hoveredCharId = ref('')
 
           window.vs = reactive(window.vs)
 
@@ -1561,32 +1563,26 @@
             })
           }
 
+          // Pre-load all character GIFs so first-hover is instant
+          characters
+            .filter(c => c.id !== 'shemoon' && !c.dlc3)
+            .forEach(c => { new Image().src = `./img/characters/${c.id}.gif` })
+
           function onMouseEnter(object) {
             hoveredId = object.id
-            // character's gif animation
             if (object.type === 'character' && object.id !== 'shemoon' && !object.dlc3) {
-              const iconElements = document.querySelectorAll(`[data-id="${object.id}"] > .icon`)
-              for (const iconElement of iconElements) {
-                const image = new Image()
-                image.onload = () => {
-                  if (object.id === hoveredId) {
-                    iconElement.style.backgroundImage = `url("./img/characters/${object.id}.gif")`
-                  }
-                }
-                image.src = `./img/characters/${object.id}.gif`
-              }
+              const gifSrc = `./img/characters/${object.id}.gif`
+              const img = new Image()
+              img.onload = () => { if (object.id === hoveredId) hoveredCharId.value = object.id }
+              img.src = gifSrc
+              if (img.complete) hoveredCharId.value = object.id
             }
             showImpacts(object)
           }
 
           function onMouseLeave(object) {
             hoveredId = ''
-            if (object && object.type === 'character') {
-              const iconElements = document.querySelectorAll(`[data-id="${object.id}"] > .icon`)
-              for (const iconElement of iconElements) {
-                iconElement.style.backgroundImage = ''
-              }
-            }
+            hoveredCharId.value = ''
             hideImpacts()
           }
 
@@ -1797,6 +1793,7 @@
             config,
             settings,
             collapsedSections,
+            hoveredCharId,
             characters,
             weapons,
             passives,
