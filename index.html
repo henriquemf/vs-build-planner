@@ -36,74 +36,41 @@
           </h1>
         </header>
 
-        <!-- Slots -->
+        <!-- The build -->
         <section class="slots flex-col-row">
           <div class="flex-reverse-row">
             <div class="arcanas flex-reverse-col">
-              <div v-for="(arcana, $index) in selectedArcanas" :data-id="arcana.id" class="slot arcana" :class="arcana.type" :title="arcana.title" @click="deleteItem(arcana, selectedArcanas[$index+1])" @mouseenter="onMouseEnter(arcana)" @mouseleave="onMouseLeave()">
-                <div class="icon" :class="`icon-${arcana.id}`"></div>
-              </div>
-              <div v-for="i in (selectedArcanas.length < 3 ? 3 - selectedArcanas.length : 0)" class="slot arcana">
-                <small class="empty">ARCANA</small>
-              </div>
+              <build-slot v-for="(arcana, $index) in selectedArcanas" :key="`a${arcana.id}`" :item="arcana" kind="arcana" @remove="deleteItem(arcana, selectedArcanas[$index + 1])" @enter="onMouseEnter(arcana)" @leave="onMouseLeave()"></build-slot>
+              <build-slot v-for="i in Math.max(0, 3 - selectedArcanas.length)" :key="`ae${i}`" kind="arcana"><small class="empty">ARCANA</small></build-slot>
             </div>
-            <div v-if="selectedCharacter.id" class="slot character" :data-id="selectedCharacter.id" :title="selectedCharacter.title" @click="deleteItem(selectedCharacter)" @mouseenter="onMouseEnter(selectedCharacter)" @mouseleave="onMouseLeave()">
-              <div class="icon" :class="`icon-${selectedCharacter.id}`"></div>
-            </div>
-            <div v-else class="slot character">
-              <small class="empty">CHARACTER</small>
-            </div>
+            <build-slot :item="selectedCharacter.id ? selectedCharacter : null" kind="character" @remove="deleteItem(selectedCharacter)" @enter="onMouseEnter(selectedCharacter)" @leave="onMouseLeave()"><small class="empty">CHARACTER</small></build-slot>
           </div>
           <div class="flex-row-col">
             <div class="flex-col-row weapons">
-              <div v-for="(weapon, $index) in evolvedWeapons" :data-id="weapon.id" class="slot weapon" :title="weapon.title" @click="deleteItem(weapon, evolvedWeapons[$index+1])" @mouseenter="onMouseEnter(weapon)" @mouseleave="onMouseLeave()">
-                <div class="icon" :class="`icon-${weapon.id}`"></div>
-              </div>
-              <div v-for="i in (evolvedWeapons.length < 7 ? 6 - evolvedWeapons.length : 0)" class="slot weapon">
-                <small v-if="itemsById.arcana20.selected && (i > extraOpenWeaponSlots)" class="locked">❌</small>
+              <build-slot v-for="(weapon, $index) in evolvedWeapons" :key="`w${weapon.id}`" :item="weapon" kind="weapon" @remove="deleteItem(weapon, evolvedWeapons[$index + 1])" @enter="onMouseEnter(weapon)" @leave="onMouseLeave()"></build-slot>
+              <build-slot v-for="i in Math.max(0, 6 - evolvedWeapons.length)" :key="`we${i}`" kind="weapon">
+                <small v-if="itemsById.arcana20.selected && i > extraOpenWeaponSlots" class="locked">❌</small>
                 <small v-else class="empty">WEAPON</small>
-              </div>
-              <div v-for="weapon in counterpartsWeapons" :data-id="weapon.id" class="slot weapon" :title="weapon.title" @mouseenter="onMouseEnter(weapon)" @mouseleave="onMouseLeave()">
-                <div class="icon" :class="`icon-${weapon.id}`"></div>
-              </div>
+              </build-slot>
+              <build-slot v-for="weapon in counterpartsWeapons" :key="`wc${weapon.id}`" :item="weapon" kind="weapon" @enter="onMouseEnter(weapon)" @leave="onMouseLeave()"></build-slot>
             </div>
             <div class="flex-col-row passives">
-              <div v-for="(passive, $index) in pickedPassives" :data-id="passive.id" class="slot passive" :title="passive.title" @click="deleteItem(passive, pickedPassives[$index+1])" @mouseenter="onMouseEnter(passive)" @mouseleave="onMouseLeave()">
-                <div class="icon" :class="`icon-${passive.id}`"></div>
-              </div>
-              <div v-for="i in (pickedPassives.length < 7 ? 6 - pickedPassives.length : 0)" class="slot passive">
-                <small class="empty">PASSIVE</small>
-              </div>
-              <div v-for="(passive, $index) in extraPassives" :data-id="passive.id" class="slot passive" :title="passive.title" @click="deleteItem(passive, extraPassives[$index+1])" @mouseenter="onMouseEnter(passive)" @mouseleave="onMouseLeave()">
-                <div class="icon" :class="`icon-${passive.id}`"></div>
-              </div>
+              <build-slot v-for="(passive, $index) in pickedPassives" :key="`p${passive.id}`" :item="passive" kind="passive" @remove="deleteItem(passive, pickedPassives[$index + 1])" @enter="onMouseEnter(passive)" @leave="onMouseLeave()"></build-slot>
+              <build-slot v-for="i in Math.max(0, 6 - pickedPassives.length)" :key="`pe${i}`" kind="passive"><small class="empty">PASSIVE</small></build-slot>
+              <build-slot v-for="(passive, $index) in extraPassives" :key="`px${passive.id}`" :item="passive" kind="passive" @remove="deleteItem(passive, extraPassives[$index + 1])" @enter="onMouseEnter(passive)" @leave="onMouseLeave()"></build-slot>
             </div>
             <div class="flex-col-row" v-if="selectedStage.id">
-              <div class="slot stage" :class="{inverse: selectedArcanas.length > maxArcanas}" :title="selectedStage.title" @click="deleteItem(selectedStage)" @mouseleave="onMouseLeave()">
-                <div class="icon" :class="`icon-${selectedStage.id}`"></div>
-              </div>
+              <build-slot :item="selectedStage" kind="stage" :inverse="selectedArcanas.length > maxArcanas" @remove="deleteItem(selectedStage)" @leave="onMouseLeave()"></build-slot>
               <div class="flex-row-col">
-                <div class="flex-col-row">
-                  <div v-for="(passive, $index) in stagePassives.slice(0, 12).slice(0, -4)" :data-id="passive.id" class="slot passive" :title="passive.title" @click="deleteItem(passive, selectedPassives[$index+1])" @mouseenter="onMouseEnter(passive)" @mouseleave="onMouseLeave()">
-                    <div class="icon" :class="`icon-${passive.id}`"></div>
-                  </div>
-                </div>
-                <div class="flex-col-row">
-                  <div v-for="(passive, $index) in stagePassives.slice(8, 20).slice(0, -4)" :data-id="passive.id" class="slot passive" :title="passive.title" @click="deleteItem(passive, selectedPassives[$index+1])" @mouseenter="onMouseEnter(passive)" @mouseleave="onMouseLeave()">
-                    <div class="icon" :class="`icon-${passive.id}`"></div>
-                  </div>
-                </div>
-                <div class="flex-col-row">
-                  <div v-for="(passive, $index) in stagePassives.slice(-4)" :data-id="passive.id" class="slot passive" :title="passive.title" @click="deleteItem(passive, selectedPassives[$index+1])" @mouseenter="onMouseEnter(passive)" @mouseleave="onMouseLeave()">
-                    <div class="icon" :class="`icon-${passive.id}`"></div>
-                  </div>
+                <div v-for="(row, $row) in stagePassiveRows" :key="`row${$row}`" class="flex-col-row">
+                  <build-slot v-for="(passive, $index) in row" :key="`sp${passive.id}`" :item="passive" kind="passive" @remove="deleteItem(passive, selectedPassives[$index + 1])" @enter="onMouseEnter(passive)" @leave="onMouseLeave()"></build-slot>
                 </div>
               </div>
             </div>
           </div>
         </section>
 
-        <!-- Buttons -->
+        <!-- Actions -->
         <div class="buttons">
           <span class="button" @click="reset($event)">RESET</span>
           <span class="button" @click="copyLink($event)">COPY LINK</span>
@@ -113,125 +80,74 @@
           <span class="button" @click="settings = !settings">SETTINGS</span>
         </div>
         <div v-if="settings" class="buttons settings">
-          <span class="button" @click="config.sorting = !config.sorting">SORT BY IMPACTS: <span :class="config.sorting ? 'enabled' : 'disabled'">{{config.sorting ? 'ON' : 'OFF'}}</span></span>
-          <span v-for="flag in dlcFlags" :key="flag" class="button" @click="config[flag] = !config[flag]">{{flag.toUpperCase().replace('DLC', 'DLC ')}}: <span :class="config[flag] ? 'enabled' : 'disabled'">{{config[flag] ? 'ON' : 'OFF'}}</span></span>
-          <span class="button" @click="config.combinations = !config.combinations">COMBINATIONS: <span :class="config.combinations ? 'enabled' : 'disabled'">{{config.combinations ? 'ON' : 'OFF'}}</span></span>
-          <span class="button" @click="config.impacts = !config.impacts">IMPACTS: <span :class="config.impacts ? 'enabled' : 'disabled'">{{config.impacts ? 'ON' : 'OFF'}}</span></span>
-          <span class="button" @click="config.titles = !config.titles">TITLES: <span :class="config.titles ? 'enabled' : 'disabled'">{{config.titles ? 'ON' : 'OFF'}}</span></span>
-          <span class="button" @click="config.pixels = !config.pixels">PIXELS: <span :class="config.pixels ? 'enabled' : 'disabled'">{{config.pixels ? 'ON' : 'OFF'}}</span></span>
+          <toggle-button setting="sorting" label="SORT BY IMPACTS"></toggle-button>
+          <toggle-button v-for="flag in dlcFlags" :key="flag" :setting="flag" :label="flag.toUpperCase().replace('DLC', 'DLC ')"></toggle-button>
+          <toggle-button setting="combinations" label="COMBINATIONS"></toggle-button>
+          <toggle-button setting="impacts" label="IMPACTS"></toggle-button>
+          <toggle-button setting="titles" label="TITLES"></toggle-button>
+          <toggle-button setting="pixels" label="PIXELS"></toggle-button>
           <span class="button" @click="config.size -= 0.1">SIZE <span class="modifier">-</span></span>
           <span class="button" style="margin-left: 0" @click="config.size += 0.1">SIZE <span class="modifier">+</span></span>
         </div>
 
-        <!-- Characters -->
-        <h2 @click="collapsedSections.characters = !collapsedSections.characters"><small :style="{transform: collapsedSections.characters ? 'none' : 'rotate(90deg)'}">►</small> Characters</h2>
-        <Transition name="slidedown">
-          <section v-if="!collapsedSections.characters" style="max-width: 75em">
-            <div class="objects">
-              <div v-for="character in visibleCharacters" :data-id="character.id" class="object character" :class="[character.dlcClass, {selected: selectedCharacter.id === character.id, special: character.special}]" :title="character.title" @click="toggleItem(character)" @mouseenter="onMouseEnter(character)" @mouseleave="onMouseLeave()">
-                <div class="icon" :class="`icon-${character.id}`" :style="character.id === hoveredCharacterId ? { backgroundImage: `url('./img/characters/${character.id}.gif')`, backgroundSize: 'contain', backgroundPosition: 'bottom center' } : {}"></div>
-                <div class="items">
-                  <div v-for="item in character.items" class="icon" :class="`icon-${item.id}`" :title="item.title"></div>
-                </div>
-                <div v-if="config.titles" class="title">{{character.id}}</div>
-              </div>
-            </div>
-          </section>
-        </Transition>
+        <!-- Pickable content -->
+        <collapsible-section name="characters" title="Characters">
+          <div class="objects">
+            <object-tile v-for="character in visibleCharacters" :key="character.id" :item="character" kind="character" :selected="selectedCharacter.id === character.id" :icon-style="walkAnimationStyle(character)" @select="toggleItem" @enter="onMouseEnter" @leave="onMouseLeave">
+              <combination-list :items="character.items"></combination-list>
+              <div v-if="config.titles" class="title">{{character.id}}</div>
+            </object-tile>
+          </div>
+        </collapsible-section>
 
-        <!-- Weapons -->
-        <h2 @click="collapsedSections.weapons = !collapsedSections.weapons"><small :style="{transform: collapsedSections.weapons ? 'none' : 'rotate(90deg)'}">►</small> Weapons</h2>
-        <Transition name="slidedown">
-          <section v-if="!collapsedSections.weapons" style="max-width: 75em">
-            <transition-group tag="div" class="objects">
-              <div v-for="weapon in visibleWeapons" :key="weapon.id" :data-id="weapon.id" class="object weapon" :class="[weapon.dlcClass, {selected: weapon.selected, special: weapon.special, center: !config.combinations && !config.titles && !config.impacts}]" :title="weapon.title" @click="toggleItem(weapon)" @mouseenter="onMouseEnter(weapon)" @mouseleave="onMouseLeave()">
-                <div class="icon" :class="`icon-${weapon.id}`"></div>
-                <div v-if="config.impacts" class="impacts">
-                  <div v-for="impact in impactsById[weapon.id]" class="impact" :class="itemsById[impact.substring(1)]?.selected ? (impact[0] === '+' ? 'positive' : 'negative') : ''" :title="impact.substring(1)"></div>
-                </div>
-                <div v-if="config.combinations" class="items">
-                  <div v-for="item in weapon.items" class="icon" :class="`icon-${item.id}`" :title="item.title"></div>
-                </div>
-                <div v-if="config.titles" class="title">{{weapon.id}}</div>
-              </div>
-            </transition-group>
-          </section>
-        </Transition>
+        <collapsible-section name="weapons" title="Weapons">
+          <transition-group tag="div" class="objects">
+            <object-tile v-for="weapon in visibleWeapons" :key="weapon.id" :item="weapon" kind="weapon" :selected="weapon.selected" :center="bareTiles" @select="toggleItem" @enter="onMouseEnter" @leave="onMouseLeave">
+              <impact-strip :item-id="weapon.id"></impact-strip>
+              <combination-list v-if="config.combinations" :items="weapon.items"></combination-list>
+              <div v-if="config.titles" class="title">{{weapon.id}}</div>
+            </object-tile>
+          </transition-group>
+        </collapsible-section>
 
-        <!-- Evolutions -->
-        <h2 @click="collapsedSections.evolutions = !collapsedSections.evolutions"><small :style="{transform: collapsedSections.evolutions ? 'none' : 'rotate(90deg)'}">►</small> Evolutions</h2>
-        <Transition name="slidedown">
-          <section v-if="!collapsedSections.evolutions" style="max-width: 75em">
-            <transition-group tag="div" class="objects">
-              <div v-for="evolution in visibleEvolutions" :key="evolution.id" :data-id="evolution.id" class="object evolution" :class="[evolution.dlcClass, {selected: evolution.selected, special: evolution.special, center: !config.combinations && !config.titles && !config.impacts}]" :title="evolution.title" @click="toggleItem(evolution)" @mouseenter="onMouseEnter(evolution)" @mouseleave="onMouseLeave()">
-                <div class="icon" :class="`icon-${evolution.id}`"></div>
-                <div v-if="config.impacts" class="impacts">
-                  <div v-for="impact in impactsById[evolution.id]" class="impact" :class="itemsById[impact.substring(1)]?.selected ? (impact[0] === '+' ? 'positive' : 'negative') : ''" :title="impact.substring(1)"></div>
-                </div>
-                <div v-if="config.combinations" class="items">
-                  <div v-for="item in evolution.items" class="icon" :class="`icon-${item.id}`" :title="item.title"></div>
-                </div>
-                <div v-if="config.titles" class="title">{{evolution.id}}</div>
-              </div>
-            </transition-group>
-          </section>
-        </Transition>
+        <collapsible-section name="evolutions" title="Evolutions">
+          <transition-group tag="div" class="objects">
+            <object-tile v-for="evolution in visibleEvolutions" :key="evolution.id" :item="evolution" kind="evolution" :selected="evolution.selected" :center="bareTiles" @select="toggleItem" @enter="onMouseEnter" @leave="onMouseLeave">
+              <impact-strip :item-id="evolution.id"></impact-strip>
+              <combination-list v-if="config.combinations" :items="evolution.items"></combination-list>
+              <div v-if="config.titles" class="title">{{evolution.id}}</div>
+            </object-tile>
+          </transition-group>
+        </collapsible-section>
 
-        <!-- Passives -->
-        <h2 @click="collapsedSections.passives = !collapsedSections.passives"><small :style="{transform: collapsedSections.passives ? 'none' : 'rotate(90deg)'}">►</small> Passives</h2>
-        <Transition name="slidedown">
-          <section v-if="!collapsedSections.passives" style="max-width: 55em">
-            <transition-group tag="div" class="objects">
-              <div v-for="passive in visiblePassives" :key="passive.id" :data-id="passive.id" class="object passive" :class="[passive.dlcClass, {selected: passive.selected, special: passive.special, center: !config.combinations && !config.titles && !config.impacts}]" :title="passive.title" @click="toggleItem(passive)" @mouseenter="onMouseEnter(passive)" @mouseleave="onMouseLeave()">
-                <div class="icon" :class="`icon-${passive.id}`"></div>
-                <div v-if="config.impacts" class="impacts">
-                  <div v-for="impact in impactsById[passive.id]" class="impact" :class="itemsById[impact.substring(1)]?.selected ? (impact[0] === '+' ? 'positive' : 'negative') : ''" :title="impact.substring(1)"></div>
-                </div>
-                <div v-if="config.combinations" class="items">
-                  <div v-for="item in passive.items" class="icon" :class="`icon-${item.id}`" :title="item.title"></div>
-                </div>
-                <div v-if="config.titles" class="title">{{passive.id}}</div>
-              </div>
-            </transition-group>
-          </section>
-        </Transition>
+        <collapsible-section name="passives" title="Passives" max-width="55em">
+          <transition-group tag="div" class="objects">
+            <object-tile v-for="passive in visiblePassives" :key="passive.id" :item="passive" kind="passive" :selected="passive.selected" :center="bareTiles" @select="toggleItem" @enter="onMouseEnter" @leave="onMouseLeave">
+              <impact-strip :item-id="passive.id"></impact-strip>
+              <combination-list v-if="config.combinations" :items="passive.items"></combination-list>
+              <div v-if="config.titles" class="title">{{passive.id}}</div>
+            </object-tile>
+          </transition-group>
+        </collapsible-section>
 
-        <!-- Arcanas -->
-        <h2 @click="collapsedSections.arcanas = !collapsedSections.arcanas"><small :style="{transform: collapsedSections.arcanas ? 'none' : 'rotate(90deg)'}">►</small> Arcanas</h2>
-        <Transition name="slidedown">
-          <section v-if="!collapsedSections.arcanas" style="max-width: 75em">
-            <transition-group tag="div" class="objects">
-              <div v-for="arcana in arcanas" :key="arcana.id" :data-id="arcana.id" class="object arcana" :class="[arcana.dlcClass, {selected: arcana.selected, special: arcana.special, center: !config.titles}]" :title="arcana.title" @click="toggleItem(arcana)" @mouseenter="onMouseEnter(arcana)" @mouseleave="onMouseLeave()">
-                <div class="icon" :class="`icon-${arcana.id}`"></div>
-                <div class="items">
-                  <div v-for="item in arcana.items" class="icon" :class="`icon-${item.id}`" :title="item.title"></div>
-                </div>
-                <div v-if="config.impacts" class="impacts">
-                  <div v-for="impact in impactsById[arcana.id]" class="impact" :class="itemsById[impact.substring(1)]?.selected ? (impact[0] === '+' ? 'positive' : 'negative') : ''" :title="impact.substring(1)"></div>
-                </div>
-                <div v-if="config.titles" class="roman" :class="arcana.id.includes('darkana') ? 'darkana' : 'arcana'">{{arcana.roman}}</div>
-              </div>
-            </transition-group>
-          </section>
-        </Transition>
+        <collapsible-section name="arcanas" title="Arcanas">
+          <transition-group tag="div" class="objects">
+            <object-tile v-for="arcana in arcanas" :key="arcana.id" :item="arcana" kind="arcana" :selected="arcana.selected" :center="!config.titles" @select="toggleItem" @enter="onMouseEnter" @leave="onMouseLeave">
+              <combination-list :items="arcana.items"></combination-list>
+              <impact-strip :item-id="arcana.id"></impact-strip>
+              <div v-if="config.titles" class="roman" :class="arcana.id.includes('darkana') ? 'darkana' : 'arcana'">{{arcana.roman}}</div>
+            </object-tile>
+          </transition-group>
+        </collapsible-section>
 
-        <!-- Stages -->
-        <h2 @click="collapsedSections.stages = !collapsedSections.stages"><small :style="{transform: collapsedSections.stages ? 'none' : 'rotate(90deg)'}">►</small> Stages</h2>
-        <Transition name="slidedown">
-          <section v-if="!collapsedSections.stages" style="max-width: 75em">
-            <div class="objects">
-              <div v-for="stage in visibleStages" :data-id="stage.id" class="object stage center" :class="[stage.dlcClass, {selected: stage.selected, special: stage.special}]" :title="stage.title" @click="toggleItem(stage)" @mouseenter="onMouseEnter(stage)" @mouseleave="onMouseLeave()">
-                <div class="icon" :class="`icon-${stage.id}`"></div>
-                <div class="items">
-                  <div v-for="item in stage.items.slice(-4)" class="icon" :class="`icon-${item.id}`" :title="item.title"></div>
-                  <div style="width: 100%"></div>
-                  <div v-for="item in stage.items.slice(0, -4)" class="icon" :class="`icon-${item.id}`" :title="item.title"></div>
-                </div>
-                <div v-if="config.titles" class="title">{{stage.id}}</div>
-              </div>
-            </div>
-          </section>
-        </Transition>
+        <collapsible-section name="stages" title="Stages">
+          <div class="objects">
+            <object-tile v-for="stage in visibleStages" :key="stage.id" :item="stage" kind="stage" :selected="stage.selected" center @select="toggleItem" @enter="onMouseEnter" @leave="onMouseLeave">
+              <combination-list :rows="[stage.items.slice(-4), stage.items.slice(0, -4)]"></combination-list>
+              <div v-if="config.titles" class="title">{{stage.id}}</div>
+            </object-tile>
+          </div>
+        </collapsible-section>
 
         <!-- Footer -->
         <footer>
@@ -255,7 +171,7 @@
 
     <!-- Libraries. Everything below is deferred: the browser downloads it all in
          parallel and still runs it in document order, after the markup is parsed. -->
-    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.4.6/vue.global.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.4.6/vue.global.prod.js"></script>
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.min.js"></script>
 
     <!-- Game data: one file per collection, each appending to window.vs -->
@@ -281,6 +197,7 @@
     <script defer src="./js/highlight.js"></script>
     <script defer src="./js/share.js"></script>
     <script defer src="./js/portraits.js"></script>
+    <script defer src="./js/components.js"></script>
     <script defer src="./js/app.js"></script>
 
     <!-- Yandex.Metrika counter -->

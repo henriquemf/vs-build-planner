@@ -54,11 +54,6 @@ section {
 .pixels {
   image-rendering: pixelated;
 }
-.flex-row {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-}
 .flex-col-row {
   display: flex;
   flex-direction: row;

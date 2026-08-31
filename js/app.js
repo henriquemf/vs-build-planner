@@ -1,12 +1,11 @@
 /* Wires the pieces together and mounts the Vue app onto #app.
    Load order (see index.html): util, config, catalog, selection, impacts, highlight,
-   share, portraits, then this file. */
+   share, portraits, components, then this file. */
 ;(function (VSP) {
   'use strict'
-  const { createApp, ref, reactive, computed, watchEffect, nextTick, TransitionGroup } = Vue
+  const { createApp, ref, reactive, computed, watchEffect, nextTick, provide } = Vue
 
-  createApp({
-    components: { TransitionGroup },
+  const app = createApp({
     setup() {
       console.log(
         '%cVOCÊ É O AMOR DA MINHA VIDA <3',
@@ -30,13 +29,26 @@
       const portraits = VSP.createPortraits()
       portraits.preload()
 
+      // the tile components reach these through inject rather than a prop chain
+      provide('config', config)
+      provide('itemsById', itemsById)
+      provide('impactsById', impactsById)
+      provide('collapsedSections', collapsedSections)
+
       /* One filter for every section: an item is shown unless its DLC is switched off. */
       const visibleIn = (collection) => computed(() => collection.filter((item) => VSP.isVisibleWith(item, config)))
-      const visibleCharacters = visibleIn(characters)
-      const visibleWeapons = visibleIn(weapons)
-      const visibleEvolutions = visibleIn(evolutions)
-      const visiblePassives = visibleIn(passives)
-      const visibleStages = visibleIn(stages)
+
+      /* With every label hidden there is nothing under the sprite, so centre it. */
+      const bareTiles = computed(() => !config.combinations && !config.titles && !config.impacts)
+
+      /* The stage's own pickups, laid out as the three rows the slot area draws. */
+      const stagePassiveRows = computed(() => {
+        const all = selection.stagePassives.value
+        return [all.slice(0, 12).slice(0, -4), all.slice(8, 20).slice(0, -4), all.slice(-4)]
+      })
+
+      const walkAnimationStyle = (character) =>
+        character.id === portraits.hoveredCharacterId.value ? { backgroundImage: `url('./img/characters/${character.id}.gif')`, backgroundSize: 'contain', backgroundPosition: 'bottom center' } : null
 
       /* Optional sort: the items that the current build cares about most, first. */
       const impactCount = (item) => (impactsById.value[item.id] || []).filter((impact) => selection.selectedIds.has(impact.substring(1))).length
@@ -84,28 +96,35 @@
         config,
         dlcFlags: VSP.DLC_FLAGS,
         settings,
-        collapsedSections,
-        hoveredCharacterId: portraits.hoveredCharacterId,
-        characters,
-        weapons,
-        passives,
-        evolutions,
-        arcanas,
-        stages,
-        visibleCharacters,
-        visibleWeapons,
-        visibleEvolutions,
-        visiblePassives,
-        visibleStages,
         itemsById,
-        impactsById,
-        ...selection,
-        ...shareActions,
+        arcanas,
+        bareTiles,
+        walkAnimationStyle,
+        visibleCharacters: visibleIn(characters),
+        visibleWeapons: visibleIn(weapons),
+        visibleEvolutions: visibleIn(evolutions),
+        visiblePassives: visibleIn(passives),
+        visibleStages: visibleIn(stages),
+        selectedCharacter: selection.selectedCharacter,
+        selectedStage: selection.selectedStage,
+        selectedPassives: selection.selectedPassives,
+        selectedArcanas: selection.selectedArcanas,
+        pickedPassives: selection.pickedPassives,
+        extraPassives: selection.extraPassives,
+        stagePassiveRows,
+        evolvedWeapons: selection.evolvedWeapons,
+        counterpartsWeapons: selection.counterpartsWeapons,
+        extraOpenWeaponSlots: selection.extraOpenWeaponSlots,
+        maxArcanas: selection.maxArcanas,
         onMouseEnter,
         onMouseLeave,
         toggleItem,
         deleteItem,
+        ...shareActions,
       }
     },
-  }).mount('#app')
+  })
+
+  VSP.registerComponents(app)
+  app.mount('#app')
 })(window.VSP)

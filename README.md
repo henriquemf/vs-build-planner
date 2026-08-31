@@ -42,12 +42,13 @@ vs-build-planner/
 │   ├── highlight.js         hover highlighting
 │   ├── share.js             reset / copy link / copy emojis / copy + save image
 │   ├── portraits.js         character walk-animation swapping
+│   ├── components.js        BuildSlot, ObjectTile, ImpactStrip, CombinationList,
+│   │                        CollapsibleSection, ToggleButton
 │   └── app.js               wires it together and mounts Vue
 ├── img/
 │   ├── characters/          walk animations, one .gif per character
 │   ├── icons/               sprites too large to inline in css/icons.css
 │   └── logos/               footer links
-├── legacy/                  the retired DLC 1–4 planner, kept for reference
 └── scripts/
     ├── build-data.js        parses the legacy Electron game files into data/ + css/icons.css
     ├── build-images.js      generates character GIFs from the sprite atlases
@@ -57,8 +58,13 @@ vs-build-planner/
 
 ### Architecture notes
 
-- **No build step.** Everything is served as-is; Vue 3 comes from a CDN. Open `index.html`
-  through any static server (`npx live-server .`) or just double-click it.
+- **No build step.** Everything is served as-is; Vue 3 comes from a CDN — the *production*
+  build, which is 146 KB against 516 KB for the development one. It still ships the
+  template compiler, which is what lets the components below be plain strings. Open
+  `index.html` through any static server (`npx live-server .`) or just double-click it.
+- **Components.** The repeated markup lives in `js/components.js` and is registered
+  globally. `config`, `itemsById` and `impactsById` reach them through provide/inject
+  rather than a prop chain.
 - **Plain scripts, not modules.** Each file in `js/` is an IIFE that hangs one factory off
   `window.VSP`, and `index.html` lists them in dependency order. That keeps the page
   working from `file://`, which ES modules would break. Every tag is `defer`, so the
@@ -146,6 +152,8 @@ node scripts/build-data.js      # -> scripts/dst/data/, scripts/dst/css/, script
 node scripts/build-images.js    # -> character GIFs
 ```
 
+Both need `scripts/src/` populated with the game's own files.
+
 `build-data.js` targets the legacy Electron build of the game. Content from DLC 5 onward
 was added by hand from the [wiki](https://vampire.survivors.wiki/), which is the practical
 route for new patches.
@@ -157,7 +165,6 @@ route for new patches.
 - Newly added items have no entry in `data/impacts.js`, so they show no impact markers and
   do not take part in “sort by impacts”.
 - 104 of the 228 characters have no walk animation yet.
-- `legacy/` only knows about DLC 1–4 and is no longer maintained.
 - The page reports to the upstream author's Yandex.Metrika counter (inherited from the
   original project).
 
