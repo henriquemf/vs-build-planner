@@ -1322,23 +1322,23 @@
           watchEffect(() => {
             if (config.sorting) {
               weapons.sort((a, b) => {
-                const selected1 = impactsById.value[a.id].filter((i) => selectedIds.has(i.substring(1)))
-                const selected2 = impactsById.value[b.id].filter((i) => selectedIds.has(i.substring(1)))
+                const selected1 = (impactsById.value[a.id] || []).filter((i) => selectedIds.has(i.substring(1)))
+                const selected2 = (impactsById.value[b.id] || []).filter((i) => selectedIds.has(i.substring(1)))
                 return selected2.length - selected1.length || b.index - a.index
               })
               evolutions.sort((a, b) => {
-                const selected1 = impactsById.value[a.id].filter((i) => selectedIds.has(i.substring(1)))
-                const selected2 = impactsById.value[b.id].filter((i) => selectedIds.has(i.substring(1)))
+                const selected1 = (impactsById.value[a.id] || []).filter((i) => selectedIds.has(i.substring(1)))
+                const selected2 = (impactsById.value[b.id] || []).filter((i) => selectedIds.has(i.substring(1)))
                 return selected2.length - selected1.length || b.index - a.index
               })
               passives.sort((a, b) => {
-                const selected1 = impactsById.value[a.id].filter((i) => selectedIds.has(i.substring(1)))
-                const selected2 = impactsById.value[b.id].filter((i) => selectedIds.has(i.substring(1)))
+                const selected1 = (impactsById.value[a.id] || []).filter((i) => selectedIds.has(i.substring(1)))
+                const selected2 = (impactsById.value[b.id] || []).filter((i) => selectedIds.has(i.substring(1)))
                 return a.dlc3 && !b.dlc3 ? 1 : !a.dlc3 && b.dlc3 ? -1 : selected2.length - selected1.length || b.index - a.index
               })
               arcanas.sort((a, b) => {
-                const selected1 = impactsById.value[a.id].filter((i) => selectedIds.has(i.substring(1)))
-                const selected2 = impactsById.value[b.id].filter((i) => selectedIds.has(i.substring(1)))
+                const selected1 = (impactsById.value[a.id] || []).filter((i) => selectedIds.has(i.substring(1)))
+                const selected2 = (impactsById.value[b.id] || []).filter((i) => selectedIds.has(i.substring(1)))
                 return selected2.length - selected1.length || b.index - a.index
               })
             }

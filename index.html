@@ -157,6 +157,12 @@
       .dlc6 {
         background-color: #597;
       }
+      .dlc7 {
+        background-color: #66b;
+      }
+      .dlc8 {
+        background-color: #b44;
+      }
       .selected {
         background-color: #36f;
       }
@@ -605,6 +611,8 @@
           <span class="button" @click="config.dlc4 = !config.dlc4">DLC 4: <span :class="(config.dlc4 ? 'enabled' : 'disabled')">{{config.dlc4 ? 'ON' : 'OFF'}}</span></span>
           <span class="button" @click="config.dlc5 = !config.dlc5">DLC 5: <span :class="(config.dlc5 ? 'enabled' : 'disabled')">{{config.dlc5 ? 'ON' : 'OFF'}}</span></span>
           <span class="button" @click="config.dlc6 = !config.dlc6">DLC 6: <span :class="(config.dlc6 ? 'enabled' : 'disabled')">{{config.dlc6 ? 'ON' : 'OFF'}}</span></span>
+          <span class="button" @click="config.dlc7 = !config.dlc7">DLC 7: <span :class="(config.dlc7 ? 'enabled' : 'disabled')">{{config.dlc7 ? 'ON' : 'OFF'}}</span></span>
+          <span class="button" @click="config.dlc8 = !config.dlc8">DLC 8: <span :class="(config.dlc8 ? 'enabled' : 'disabled')">{{config.dlc8 ? 'ON' : 'OFF'}}</span></span>
           <span class="button" @click="config.combinations = !config.combinations">COMBINATIONS: <span :class="(config.combinations ? 'enabled' : 'disabled')">{{config.combinations ? 'ON' : 'OFF'}}</span></span>
           <span class="button" @click="config.impacts = !config.impacts">IMPACTS: <span :class="(config.impacts ? 'enabled' : 'disabled')">{{config.impacts ? 'ON' : 'OFF'}}</span></span>
           <span class="button" @click="config.titles = !config.titles">TITLES: <span :class="(config.titles ? 'enabled' : 'disabled')">{{config.titles ? 'ON' : 'OFF'}}</span></span>
@@ -618,7 +626,7 @@
         <Transition name="slidedown">
           <section v-if="!collapsedSections.characters" style="max-width: 75em">
             <div class="objects">
-              <div v-for="character in visibleCharacters" :data-id="character.id" class="object character" :class="{selected: selectedCharacter.id === character.id, special: character.special, dlc1: character.dlc1, dlc2: character.dlc2, dlc3: character.dlc3, dlc4: character.dlc4, dlc5: character.dlc5, dlc6: character.dlc6}" :title="character.title" @click="toggleItem(character)" @mouseenter="onMouseEnter(character)" @mouseleave="onMouseLeave(character)">
+              <div v-for="character in visibleCharacters" :data-id="character.id" class="object character" :class="{selected: selectedCharacter.id === character.id, special: character.special, dlc1: character.dlc1, dlc2: character.dlc2, dlc3: character.dlc3, dlc4: character.dlc4, dlc5: character.dlc5, dlc6: character.dlc6, dlc7: character.dlc7, dlc8: character.dlc8}" :title="character.title" @click="toggleItem(character)" @mouseenter="onMouseEnter(character)" @mouseleave="onMouseLeave(character)">
                 <div class="icon" :class="`icon-${character.id}`"></div>
                 <div class="items">
                   <div v-for="item in character.items" class="icon" :class="`icon-${item.id}`" :title="item.title"></div>
@@ -634,7 +642,7 @@
         <Transition name="slidedown">
           <section v-if="!collapsedSections.weapons" style="max-width: 75em">
             <transition-group tag="div" class="objects">
-              <div v-for="weapon in visibleWeapons" :key="weapon.id" :data-id="weapon.id" class="object weapon" :class="{selected: weapon.selected, special: weapon.special, dlc1: weapon.dlc1, dlc2: weapon.dlc2, dlc3: weapon.dlc3, dlc4: weapon.dlc4, dlc5: weapon.dlc5, dlc6: weapon.dlc6, center: !config.combinations && !config.titles && !config.impacts}" :title="weapon.title" @click="toggleItem(weapon)" @mouseenter="onMouseEnter(weapon)" @mouseleave="onMouseLeave()">
+              <div v-for="weapon in visibleWeapons" :key="weapon.id" :data-id="weapon.id" class="object weapon" :class="{selected: weapon.selected, special: weapon.special, dlc1: weapon.dlc1, dlc2: weapon.dlc2, dlc3: weapon.dlc3, dlc4: weapon.dlc4, dlc5: weapon.dlc5, dlc6: weapon.dlc6, dlc7: weapon.dlc7, dlc8: weapon.dlc8, center: !config.combinations && !config.titles && !config.impacts}" :title="weapon.title" @click="toggleItem(weapon)" @mouseenter="onMouseEnter(weapon)" @mouseleave="onMouseLeave()">
                 <div class="icon" :class="`icon-${weapon.id}`"></div>
                 <div v-if="config.impacts" class="impacts">
                   <div v-for="impact in impactsById[weapon.id]" class="impact" :class="itemsById[impact.substring(1)]?.selected ? (impact[0] === '+' ? 'positive' : 'negative') : '' " :title="impact.substring(1)"></div>
@@ -653,7 +661,7 @@
         <Transition name="slidedown">
           <section v-if="!collapsedSections.evolutions" style="max-width: 75em">
             <transition-group tag="div" class="objects">
-              <div v-for="evolution in visibleEvolutions" :key="evolution.id" :data-id="evolution.id" class="object evolution" :class="{selected: evolution.selected, special: evolution.special, dlc1: evolution.dlc1, dlc2: evolution.dlc2, dlc3: evolution.dlc3, dlc4: evolution.dlc4, dlc5: evolution.dlc5, dlc6: evolution.dlc6, center: !config.combinations && !config.titles && !config.impacts}" :title="evolution.title" @click="toggleItem(evolution)" @mouseenter="onMouseEnter(evolution)" @mouseleave="onMouseLeave()">
+              <div v-for="evolution in visibleEvolutions" :key="evolution.id" :data-id="evolution.id" class="object evolution" :class="{selected: evolution.selected, special: evolution.special, dlc1: evolution.dlc1, dlc2: evolution.dlc2, dlc3: evolution.dlc3, dlc4: evolution.dlc4, dlc5: evolution.dlc5, dlc6: evolution.dlc6, dlc7: evolution.dlc7, dlc8: evolution.dlc8, center: !config.combinations && !config.titles && !config.impacts}" :title="evolution.title" @click="toggleItem(evolution)" @mouseenter="onMouseEnter(evolution)" @mouseleave="onMouseLeave()">
                 <div class="icon" :class="`icon-${evolution.id}`"></div>
                 <div v-if="config.impacts" class="impacts">
                   <div v-for="impact in impactsById[evolution.id]" class="impact" :class="itemsById[impact.substring(1)]?.selected ? (impact[0] === '+' ? 'positive' : 'negative') : '' " :title="impact.substring(1)"></div>
@@ -672,7 +680,7 @@
         <Transition name="slidedown">
           <section v-if="!collapsedSections.passives" style="max-width: 55em">
             <transition-group tag="div" class="objects">
-              <div v-for="passive in visiblePassives" :key="passive.id" :data-id="passive.id" class="object passive" :class="{selected: passive.selected, special: passive.special, dlc1: passive.dlc1, dlc2: passive.dlc2, dlc3: passive.dlc3, dlc4: passive.dlc4, dlc5: passive.dlc5, dlc6: passive.dlc6, center: !config.combinations && !config.titles && !config.impacts}" :title="passive.title" @click="toggleItem(passive)" @mouseenter="onMouseEnter(passive)" @mouseleave="onMouseLeave()">
+              <div v-for="passive in visiblePassives" :key="passive.id" :data-id="passive.id" class="object passive" :class="{selected: passive.selected, special: passive.special, dlc1: passive.dlc1, dlc2: passive.dlc2, dlc3: passive.dlc3, dlc4: passive.dlc4, dlc5: passive.dlc5, dlc6: passive.dlc6, dlc7: passive.dlc7, dlc8: passive.dlc8, center: !config.combinations && !config.titles && !config.impacts}" :title="passive.title" @click="toggleItem(passive)" @mouseenter="onMouseEnter(passive)" @mouseleave="onMouseLeave()">
                 <div class="icon" :class="`icon-${passive.id}`"></div>
                 <div v-if="config.impacts" class="impacts">
                   <div v-for="impact in impactsById[passive.id]" class="impact" :class="itemsById[impact.substring(1)]?.selected ? (impact[0] === '+' ? 'positive' : 'negative') : '' " :title="impact.substring(1)"></div>
@@ -691,7 +699,7 @@
         <Transition name="slidedown">
           <section v-if="!collapsedSections.arcanas" style="max-width: 75em">
             <transition-group tag="div" class="objects">
-              <div v-for="arcana in arcanas" :key="arcana.id" :data-id="arcana.id" class="object arcana" :class="{selected: arcana.selected, special: arcana.special, dlc1: arcana.dlc1, dlc2: arcana.dlc2, dlc3: arcana.dlc3, dlc4: arcana.dlc4, dlc5: arcana.dlc5, dlc6: arcana.dlc6, center: !config.titles}" :title="arcana.title" @click="toggleItem(arcana)" @mouseenter="onMouseEnter(arcana)" @mouseleave="onMouseLeave()">
+              <div v-for="arcana in arcanas" :key="arcana.id" :data-id="arcana.id" class="object arcana" :class="{selected: arcana.selected, special: arcana.special, dlc1: arcana.dlc1, dlc2: arcana.dlc2, dlc3: arcana.dlc3, dlc4: arcana.dlc4, dlc5: arcana.dlc5, dlc6: arcana.dlc6, dlc7: arcana.dlc7, dlc8: arcana.dlc8, center: !config.titles}" :title="arcana.title" @click="toggleItem(arcana)" @mouseenter="onMouseEnter(arcana)" @mouseleave="onMouseLeave()">
                 <div class="icon" :class="`icon-${arcana.id}`"></div>
                 <div class="items">
                   <div v-for="item in arcana.items" class="icon" :class="`icon-${item.id}`" :title="item.title"></div>
@@ -710,7 +718,7 @@
         <Transition name="slidedown">
           <section v-if="!collapsedSections.stages" style="max-width: 75em">
             <div class="objects">
-              <div v-for="stage in visibleStages" :data-id="stage.id" class="object stage center" :class="{selected: stage.selected, special: stage.special, dlc1: stage.dlc1, dlc2: stage.dlc2, dlc3: stage.dlc3, dlc4: stage.dlc4, dlc5: stage.dlc5, dlc6: stage.dlc6}" :title="stage.title" @click="toggleItem(stage)" @mouseenter="onMouseEnter(stage)" @mouseleave="onMouseLeave()">
+              <div v-for="stage in visibleStages" :data-id="stage.id" class="object stage center" :class="{selected: stage.selected, special: stage.special, dlc1: stage.dlc1, dlc2: stage.dlc2, dlc3: stage.dlc3, dlc4: stage.dlc4, dlc5: stage.dlc5, dlc6: stage.dlc6, dlc7: stage.dlc7, dlc8: stage.dlc8}" :title="stage.title" @click="toggleItem(stage)" @mouseenter="onMouseEnter(stage)" @mouseleave="onMouseLeave()">
                 <div class="icon" :class="`icon-${stage.id}`"></div>
                 <div class="items">
                   <div v-for="item in stage.items.slice(-4)" class="icon" :class="`icon-${item.id}`" :title="item.title"></div>
@@ -777,25 +785,46 @@
           // List of all objects
           const items = [...powerups, ...passives, ...weapons, ...evolutions, ...counterparts, ...arcanas, ...characters, ...stages, ...pickups, ...structures]
           const itemsById = items.reduce((itemsById, item) => Object.assign(itemsById, { [item.id]: item }), {})
+          // Content added ahead of the sprite extraction (scripts/build-images.js) has no
+          // .icon-<id> rule yet: detect those ids once and give them a neutral placeholder,
+          // so their tiles are not rendered blank.
+          const missingIcons = (() => {
+            const probe = document.createElement('div')
+            probe.style.cssText = 'position:absolute;visibility:hidden;width:1px;height:1px'
+            document.body.appendChild(probe)
+            const missing = []
+            for (const item of items) {
+              probe.className = `icon icon-${item.id}`
+              if (getComputedStyle(probe).backgroundImage === 'none') missing.push(item.id)
+            }
+            probe.remove()
+            return missing
+          })()
+          if (missingIcons.length) {
+            const placeholder = "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect x='1.5' y='1.5' width='13' height='13' rx='2' fill='none' stroke='%23fff' stroke-opacity='.25' stroke-dasharray='2 2'/><text x='8' y='11.5' text-anchor='middle' font-family='monospace' font-size='9' fill='%23fff' fill-opacity='.45'>?</text></svg>"
+            const style = document.createElement('style')
+            style.textContent = missingIcons.map((id) => `.icon-${id}`).join(',') + `{background-image:url("${placeholder}")}`
+            document.head.appendChild(style)
+          }
 
           const visibleCharacters = computed(() => {
-            return characters.filter((character) => (config.dlc1 || !character.dlc1) && (config.dlc2 || !character.dlc2) && (config.dlc3 || !character.dlc3) && (config.dlc4 || !character.dlc4) && (config.dlc5 || !character.dlc5) && (config.dlc6 || !character.dlc6))
+            return characters.filter((character) => (config.dlc1 || !character.dlc1) && (config.dlc2 || !character.dlc2) && (config.dlc3 || !character.dlc3) && (config.dlc4 || !character.dlc4) && (config.dlc5 || !character.dlc5) && (config.dlc6 || !character.dlc6) && (config.dlc7 || !character.dlc7) && (config.dlc8 || !character.dlc8))
           })
 
           const visibleWeapons = computed(() => {
-            return weapons.filter((weapon) => (config.dlc1 || !weapon.dlc1) && (config.dlc2 || !weapon.dlc2) && (config.dlc3 || !weapon.dlc3) && (config.dlc4 || !weapon.dlc4) && (config.dlc5 || !weapon.dlc5) && (config.dlc6 || !weapon.dlc6))
+            return weapons.filter((weapon) => (config.dlc1 || !weapon.dlc1) && (config.dlc2 || !weapon.dlc2) && (config.dlc3 || !weapon.dlc3) && (config.dlc4 || !weapon.dlc4) && (config.dlc5 || !weapon.dlc5) && (config.dlc6 || !weapon.dlc6) && (config.dlc7 || !weapon.dlc7) && (config.dlc8 || !weapon.dlc8))
           })
 
           const visibleEvolutions = computed(() => {
-            return evolutions.filter((evolution) => (config.dlc1 || !evolution.dlc1) && (config.dlc2 || !evolution.dlc2) && (config.dlc3 || !evolution.dlc3) && (config.dlc4 || !evolution.dlc4) && (config.dlc5 || !evolution.dlc5) && (config.dlc6 || !evolution.dlc6))
+            return evolutions.filter((evolution) => (config.dlc1 || !evolution.dlc1) && (config.dlc2 || !evolution.dlc2) && (config.dlc3 || !evolution.dlc3) && (config.dlc4 || !evolution.dlc4) && (config.dlc5 || !evolution.dlc5) && (config.dlc6 || !evolution.dlc6) && (config.dlc7 || !evolution.dlc7) && (config.dlc8 || !evolution.dlc8))
           })
 
           const visiblePassives = computed(() => {
-            return passives.filter((passive) => (config.dlc1 || !passive.dlc1) && (config.dlc2 || !passive.dlc2) && (config.dlc3 || !passive.dlc3) && (config.dlc4 || !passive.dlc4) && (config.dlc5 || !passive.dlc5) && (config.dlc6 || !passive.dlc6))
+            return passives.filter((passive) => (config.dlc1 || !passive.dlc1) && (config.dlc2 || !passive.dlc2) && (config.dlc3 || !passive.dlc3) && (config.dlc4 || !passive.dlc4) && (config.dlc5 || !passive.dlc5) && (config.dlc6 || !passive.dlc6) && (config.dlc7 || !passive.dlc7) && (config.dlc8 || !passive.dlc8))
           })
 
           const visibleStages = computed(() => {
-            return stages.filter((stage) => (config.dlc1 || !stage.dlc1) && (config.dlc2 || !stage.dlc2) && (config.dlc3 || !stage.dlc3) && (config.dlc4 || !stage.dlc4) && (config.dlc5 || !stage.dlc5) && (config.dlc6 || !stage.dlc6))
+            return stages.filter((stage) => (config.dlc1 || !stage.dlc1) && (config.dlc2 || !stage.dlc2) && (config.dlc3 || !stage.dlc3) && (config.dlc4 || !stage.dlc4) && (config.dlc5 || !stage.dlc5) && (config.dlc6 || !stage.dlc6) && (config.dlc7 || !stage.dlc7) && (config.dlc8 || !stage.dlc8))
           })
 
           for (const item of items) {
@@ -910,6 +939,7 @@
               robbert: ['+health', '+armor', '+recovery', '+wings'],
               santa: ['+armor', '+luck'],
               gyoruntin: ['+health', '+armor', '+wings', '+curse'],
+              gazebo: ['+speed', '+recovery', '+health'],
               spacedude: ['+cooldown', '+wings'],
               // arcanas
               arcana0: ['+experience', '+chest'],
@@ -1450,23 +1480,23 @@
           watchEffect(() => {
             if (config.sorting) {
               weapons.sort((a, b) => {
-                const selected1 = impactsById.value[a.id].filter((i) => selectedIds.has(i.substring(1)))
-                const selected2 = impactsById.value[b.id].filter((i) => selectedIds.has(i.substring(1)))
+                const selected1 = (impactsById.value[a.id] || []).filter((i) => selectedIds.has(i.substring(1)))
+                const selected2 = (impactsById.value[b.id] || []).filter((i) => selectedIds.has(i.substring(1)))
                 return selected2.length - selected1.length || b.index - a.index
               })
               evolutions.sort((a, b) => {
-                const selected1 = impactsById.value[a.id].filter((i) => selectedIds.has(i.substring(1)))
-                const selected2 = impactsById.value[b.id].filter((i) => selectedIds.has(i.substring(1)))
+                const selected1 = (impactsById.value[a.id] || []).filter((i) => selectedIds.has(i.substring(1)))
+                const selected2 = (impactsById.value[b.id] || []).filter((i) => selectedIds.has(i.substring(1)))
                 return selected2.length - selected1.length || b.index - a.index
               })
               passives.sort((a, b) => {
-                const selected1 = impactsById.value[a.id].filter((i) => selectedIds.has(i.substring(1)))
-                const selected2 = impactsById.value[b.id].filter((i) => selectedIds.has(i.substring(1)))
+                const selected1 = (impactsById.value[a.id] || []).filter((i) => selectedIds.has(i.substring(1)))
+                const selected2 = (impactsById.value[b.id] || []).filter((i) => selectedIds.has(i.substring(1)))
                 return a.dlc3 && !b.dlc3 ? 1 : !a.dlc3 && b.dlc3 ? -1 : selected2.length - selected1.length || b.index - a.index
               })
               arcanas.sort((a, b) => {
-                const selected1 = impactsById.value[a.id].filter((i) => selectedIds.has(i.substring(1)))
-                const selected2 = impactsById.value[b.id].filter((i) => selectedIds.has(i.substring(1)))
+                const selected1 = (impactsById.value[a.id] || []).filter((i) => selectedIds.has(i.substring(1)))
+                const selected2 = (impactsById.value[b.id] || []).filter((i) => selectedIds.has(i.substring(1)))
                 return selected2.length - selected1.length || b.index - a.index
               })
             }
@@ -1733,7 +1763,7 @@
           }
 
           function useConfig(storageKey = 'vs-build') {
-            const defaultConfig = { sorting: false, impacts: true, pixels: true, titles: true, dlc1: true, dlc2: true, dlc3: true, dlc4: true, dlc5: true, dlc6: true, combinations: true, size: 1, version: 3 }
+            const defaultConfig = { sorting: false, impacts: true, pixels: true, titles: true, dlc1: true, dlc2: true, dlc3: true, dlc4: true, dlc5: true, dlc6: true, dlc7: true, dlc8: true, combinations: true, size: 1, version: 3 }
 
             const userConfig = loadUserConfig()
 
