@@ -1,3 +1,8 @@
-scripts
+# Game files and build output — never redistributable
 scripts/src/
-scripts/extract-unity-icons.py # opcional, se quiser manter privado
+scripts/dst/
+
+# Optional private extraction helper
+scripts/extract-unity-icons.py
+
+node_modules/

@@ -1,0 +1,494 @@
+/* Vampire Survivors Build Planner — layout and theme.
+   Item sprites live in icons.css (one .icon-<id> rule per item). */
+
+* {
+  box-sizing: border-box;
+}
+html {
+  font-family: sans-serif;
+  line-height: 1;
+  background: #333 radial-gradient(#600, #100) no-repeat fixed;
+  color: #fff;
+  text-align: center;
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+body {
+  margin: 0;
+  overflow-x: hidden;
+}
+header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 1em 1em 0.5em;
+}
+h1 {
+  margin: 0;
+  font-weight: 800;
+  font-size: 1.6em;
+}
+h2 {
+  display: flex;
+  align-items: center;
+  margin: 0.5em;
+  cursor: pointer;
+  user-select: none;
+}
+h2:hover {
+  color: #ffc;
+}
+h2 small {
+  margin-right: 0.7em;
+  font-size: 0.6em;
+  transform: scale(1, 0.5) rotate(90deg);
+  transition: transform 0.2s;
+}
+h2.collapsed small {
+  transform: rotate(0);
+}
+section {
+  margin-bottom: 0.5em;
+}
+.pixels {
+  image-rendering: pixelated;
+}
+.flex-row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.flex-col-row {
+  display: flex;
+  flex-direction: row;
+}
+.flex-row-col {
+  display: flex;
+  flex-direction: column;
+}
+.flex-reverse-row {
+  display: flex;
+}
+.flex-reverse-col {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap-reverse;
+  height: 9em;
+}
+.app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+.github {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+/* Objects and slots */
+
+.object,
+.slot {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 4.5em;
+  height: 4.5em;
+  overflow: hidden;
+  border: 0.05em outset rgba(100, 100, 100, 0.7);
+  background: #987 linear-gradient(-45deg, rgba(0, 0, 0, 0.6), transparent) no-repeat;
+  cursor: pointer;
+  transition: background-color 0.1s, transform 0.1s;
+  box-shadow: 1px 1px 5px #000;
+}
+.slot:hover,
+.object:hover {
+  transform: scale(1.4);
+  z-index: 2;
+}
+/*
+.special {
+  background-color: #444;
+}
+*/
+.dlc1 {
+  background-color: #779;
+}
+.dlc2 {
+  background-color: #798;
+}
+.dlc3 {
+  background-color: #868;
+}
+.dlc4 {
+  background-color: #996;
+}
+.dlc5 {
+  background-color: #975;
+}
+.dlc6 {
+  background-color: #597;
+}
+.dlc7 {
+  background-color: #66b;
+}
+.dlc8 {
+  background-color: #b44;
+}
+.selected {
+  background-color: #36f;
+}
+.green {
+  background-color: #3c3;
+}
+.red {
+  background-color: #f33;
+}
+.yellow {
+  background-color: #fc0;
+}
+.greenred {
+  background-color: #3c3;
+  animation: greenred 2s linear infinite;
+}
+.redgreen {
+  background-color: #f33;
+  animation: redgreen 2s linear infinite;
+}
+.positive {
+  background-color: #3c3;
+}
+.negative {
+  background-color: #f33;
+}
+.hidden {
+  display: none;
+}
+.empty {
+  color: #999;
+  font-size: 0.6em;
+  font-weight: bold;
+}
+.locked {
+  font-size: 1.6em;
+}
+
+/* Slots */
+
+.slots {
+  font-size: 0.9em;
+}
+.slot.character {
+  display: flex;
+  width: 9em;
+  height: 9em;
+  align-items: center;
+  justify-content: center;
+}
+.slot.arcana {
+  overflow: hidden;
+  width: 3em;
+  height: 3em;
+}
+.slot.stage {
+  margin-left: -12em;
+  display: flex;
+  justify-content: flex-start;
+  flex-shrink: 0;
+  width: 12em;
+  height: 4.5em;
+  overflow: hidden;
+}
+.slot.stage.inverse .icon {
+  transform: rotate(180deg);
+}
+.weapons .slot:nth-child(n + 7),
+.passives .slot:nth-child(n + 7) {
+  opacity: 0.5;
+}
+.slot .icon {
+  position: absolute;
+  width: 2.5em;
+  height: 2.5em;
+}
+.slot.character > .icon {
+  width: 6em;
+  height: 6em;
+}
+.slot.arcana > .icon,
+.slot.stage > .icon {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+}
+
+/* Objects */
+
+.objects {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.object {
+  margin: 0.2em;
+  border-radius: 0.2em;
+}
+.object.center > .icon {
+  position: initial;
+}
+.object.arcana {
+  width: 6em;
+  height: 6em;
+}
+.object.stage {
+  width: 12em;
+  height: 5em;
+}
+
+/* Objects in objects */
+
+.object > .title {
+  position: absolute;
+  top: 0.2em;
+  left: 0.2em;
+  font-size: 0.7em;
+}
+.object > .roman {
+  position: absolute;
+  top: 0.2em;
+  left: 0.2em;
+  padding: 0.2em;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 0.3em;
+  font-size: 0.9em;
+}
+.object > .roman.arcana {
+  background-color: rgba(70, 0, 70, 0.8);
+}
+.object > .roman.darkana {
+  background-color: rgba(100, 0, 0, 0.8);
+}
+.object > .character {
+  position: absolute;
+}
+.object > .icon {
+  position: absolute;
+  left: 0.3em;
+  bottom: 0.3em;
+  background-repeat: no-repeat;
+}
+.object.character > .icon {
+  bottom: 0.1em;
+  width: 3em;
+  height: 3em;
+  background-size: contain;
+  background-position: bottom center;
+}
+.object.weapon > .icon,
+.object.evolution > .icon,
+.object.passive > .icon {
+  width: 3em;
+  height: 3em;
+}
+.object.arcana > .icon,
+.object.stage > .icon {
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+}
+.object > .items {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap-reverse;
+  align-content: end;
+  padding: 0.1em;
+  height: 100%;
+  width: 100%;
+}
+.object.arcana .items,
+.object.stage .items {
+  flex-direction: row;
+  flex-wrap: wrap-reverse;
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.8));
+}
+.object.arcana.selected > .items {
+  background-color: rgba(30, 30, 250, 0.5);
+}
+.object.stage.selected > .items {
+  background-color: rgba(30, 30, 250, 0.5);
+}
+.object > .items > .icon {
+  margin: 0.1em;
+  width: 1.1em;
+  height: 1.1em;
+}
+.object > .impacts {
+  position: absolute;
+  bottom: 0.2em;
+  right: 0.2em;
+  background-color: #666;
+}
+.impact {
+  width: 0.2em;
+  height: 0.3em;
+  border-bottom: 1px solid #333;
+}
+
+/* Buttons */
+
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 0.5em;
+  color: #999;
+  font-weight: 800;
+  font-size: 0.7em;
+  text-align: center;
+  user-select: none;
+}
+.settings {
+  margin-top: -0.5em;
+  font-size: 0.6em;
+}
+.button {
+  margin: 0.4em;
+  padding: 0.7em;
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 0.3em;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+}
+.button:hover {
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  transition: all 0s;
+}
+.button .disabled {
+  color: #c66;
+}
+.button .enabled {
+  color: #6c6;
+}
+.button .modifier {
+  color: #6cc;
+}
+
+/* Footer */
+
+footer {
+  margin: 2em 0;
+  color: #999;
+  font-size: 0.8em;
+  text-align: center;
+}
+.love-message {
+  margin-top: 0.5em;
+  color: #f9a;
+  font-style: italic;
+}
+.socials {
+  margin-bottom: 1em;
+  display: flex;
+  align-items: center;
+}
+.social {
+  margin-left: 0.3em;
+  opacity: 0.8;
+  line-height: 0;
+}
+.social:hover {
+  opacity: 1;
+}
+.social img {
+  width: 1em;
+  height: 1em;
+}
+.author {
+  color: inherit;
+  text-decoration: none;
+}
+.author:hover {
+  color: #ccc;
+  cursor: pointer;
+}
+
+.slidedown-enter-active,
+.slidedown-leave-active {
+  transition: all 0.3s;
+}
+
+.slidedown-enter-to,
+.slidedown-leave-from {
+  overflow: hidden;
+  max-height: 500px;
+}
+
+.slidedown-enter-from,
+.slidedown-leave-to {
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+}
+
+@media (max-width: 50em) {
+  .flex-col-row {
+    flex-direction: column;
+  }
+  .flex-row-col {
+    flex-direction: row;
+  }
+  .flex-reverse-row {
+    flex-wrap: wrap;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+  }
+  .flex-reverse-col {
+    flex-wrap: wrap;
+  }
+  .slot.stage {
+    margin-left: 0;
+    min-width: 9em;
+    width: 100%;
+  }
+  .hidden-visible {
+    display: none;
+  }
+}
+@keyframes greenred {
+  0% {
+    background-color: #3c3;
+  }
+  40% {
+    background-color: #f33;
+  }
+  80% {
+    background-color: #3c3;
+  }
+  100% {
+    background-color: #3c3;
+  }
+}
+@keyframes redgreen {
+  0% {
+    background-color: #f33;
+  }
+  40% {
+    background-color: #3c3;
+  }
+  80% {
+    background-color: #f33;
+  }
+  100% {
+    background-color: #f33;
+  }
+}

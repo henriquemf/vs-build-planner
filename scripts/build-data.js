@@ -3,6 +3,7 @@
 
 const { readFileSync, writeFileSync } = require('fs')
 const { execSync } = require('child_process')
+const emit = require('./lib/emit')
 
 console.log('building...')
 
@@ -11,7 +12,7 @@ console.log('building...')
 // characters.json, characters.png, enemies.json, enemies.png, enemies2.json, enemies2.png, enemies3.json, enemies3.png, enemiesM.json, enemiesM.png, items.json, items.png, randomazzo.json, randomazzo.png, UI.json, UI.png
 // moonspell.json, moonspell.png, moonspellChars.json, moonspellChars.png, characterData_Moonspell.json, weaponData_Moonspell.json, stageData_Moonspell.json
 const src = `${__dirname}/src`
-// dst will contain data.js and icons.css
+// dst will contain data/, css/icons.css and img/icons/ — copy them over the repo root
 const dst = `${__dirname}/dst`
 
 const defaultCharacterStats = { maxHp: 100, armor: 0, regen: 0, moveSpeed: 1, power: 1, cooldown: 1, area: 1, speed: 1, duration: 1, amount: 0, luck: 1, growth: 1, greed: 1, curse: 1, magnet: 0, revivals: 0, rerolls: 0, skips: 0, banish: 0 }
@@ -577,10 +578,13 @@ try {
   }
 
   writeFileSync(`${dst}/main.bundle_extracted.js`, fixedData)
-  writeFileSync(`${dst}/data.js`, `window.vs = ${JSON.stringify({ characters, weapons, evolutions, counterparts, passives, powerups, arcanas, pickups, structures, stages }, null, 2)}`)
+  // one file per collection under dst/data/ — the layout index.html loads
+  emit.writeCollections(dst, { characters, weapons, evolutions, counterparts, passives, powerups, arcanas, pickups, structures, stages })
   // writeFileSync(`${dst}/data.js`, `window.vs = ${JSON.stringify({ characters, weapons, evolutions, passives, powerups, arcanas, pickups, structures, stages, defaultCharacterStats, defaultWeaponStats, defaultStageStats }, null, 2)}`)
   // writeFileSync(`${dst}/data.min.js`, `window.vs = ${JSON.stringify({ characters, weapons, evolutions, passives, powerups, arcanas, pickups, structures, stages, defaultCharacterStats, defaultWeaponStats, defaultStageStats })}`)
-  writeFileSync(`${dst}/icons.css`, getCSS())
+  // dst/css/icons.css, with the heavy sprites split out into dst/img/icons/
+  const iconStats = emit.writeIcons(dst, getCSS(), new Set(characters.map((c) => c.id)))
+  console.log(`icons: ${iconStats.inline} inline, ${iconStats.external} as files (${(iconStats.bytesMoved / 1024).toFixed(0)} KB out of the stylesheet)`)
 } catch (error) {
   console.log(error)
 }
