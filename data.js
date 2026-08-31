@@ -2588,7 +2588,7 @@ window.vs = {
     { "id": "sonicwhip",    "name": "Sonic Whip",         "emoji": ":question:", "dlc5": true, "description": "Sonia's whip. Evolves into Crissaegrim Tip.", "rarity": 1 },
     { "id": "dragonwhip",   "name": "Dragon Water Whip",  "emoji": ":question:", "dlc5": true, "description": "Trevor's water-elemental whip. Evolves into Hydrostormer Tip.", "rarity": 1 },
     { "id": "jetblackwhip", "name": "Jet Black Whip",     "emoji": ":question:", "dlc5": true, "description": "Dark whip. Evolves into Mormegill Tip.", "rarity": 1 },
-    { "id": "windwhip",     "name": "Wind Whip",          "emoji": ":question:", "dlc5": true, "description": "Simon's whip. Evolves into Sprint Tornado Tip.", "rarity": 1 },
+    { "id": "windwhip", "name": "Wind Whip", "emoji": ":question:", "dlc5": true, "description": "Damage affected by growth.", "rarity": 80 },
     { "id": "vanitaswhip",  "name": "Vanitas Whip",       "emoji": ":question:", "dlc5": true, "description": "Julius's whip. Evolves into Aurablaster Tip.", "rarity": 1 },
     { "id": "platinumwhip", "name": "Platinum Whip",      "emoji": ":question:", "dlc5": true, "description": "Richter's whip. Evolves into Cross Crasher Tip.", "rarity": 1 },
     { "id": "vibhutiwhip",  "name": "Vibhuti Whip",       "emoji": ":question:", "dlc5": true, "description": "Quincy's whip. Evolves into Daybreaker Tip.", "rarity": 1 },
@@ -2597,7 +2597,7 @@ window.vs = {
     { "id": "alucardspear", "name": "Alucard Spear",      "emoji": ":question:", "dlc5": true, "description": "Eric's legendary spear. Evolves into Thunderbolt Spear.", "rarity": 1 },
     { "id": "mace5",        "name": "Mace",               "emoji": ":question:", "dlc5": true, "description": "Heavy blunt weapon. Evolves into Stamazza.", "rarity": 1 },
     { "id": "trident5",     "name": "Trident",            "emoji": ":question:", "dlc5": true, "description": "Three-pronged spear. Evolves into Gungnir-Souris.", "rarity": 1 },
-    { "id": "starflail",    "name": "Star Flail",         "emoji": ":question:", "dlc5": true, "description": "Sara's flail. Evolves into Moon Flail.", "rarity": 1 },
+    { "id": "starflail", "name": "Star Flail", "emoji": ":question:", "dlc5": true, "description": "Fires lingering projectiles. Damage multiplied by Recovery.", "rarity": 60 },
     { "id": "ironshield",   "name": "Iron Shield",        "emoji": ":question:", "dlc5": true, "description": "Defensive shield. Evolves into Dark Iron Shield.", "rarity": 1 },
     { "id": "ironball",     "name": "Iron Ball",          "emoji": ":question:", "dlc5": true, "description": "Heavy iron ball. Evolves into Wrecking Ball.", "rarity": 1 },
     { "id": "ragingfire",   "name": "Raging Fire",        "emoji": ":question:", "dlc5": true, "description": "Charlotte's fire magic. Evolves into Salamender.", "rarity": 1 },
@@ -2623,7 +2623,7 @@ window.vs = {
     { "id": "galeforce",    "name": "Gale Force",         "emoji": ":question:", "dlc5": true, "description": "Wind-based attack. Evolves into Pneuma Tempestas.", "rarity": 1 },
     { "id": "rockriot",     "name": "Rock Riot",          "emoji": ":question:", "dlc5": true, "description": "Launches rocky projectiles. Evolves into Gemma Torpor.", "rarity": 1 },
     { "id": "handgrenade5", "name": "Hand Grenade",       "emoji": ":question:", "dlc5": true, "description": "Classic explosive. Evolves into The RPG.", "rarity": 1 },
-    { "id": "guardiantarge","name": "Guardian Targe",     "emoji": ":question:", "dlc5": true, "description": "Protective shield. Evolves into Sacred Beasts Tower Shield.", "rarity": 1 },
+    { "id": "guardiantarge", "name": "Guardian's Targe", "emoji": ":question:", "dlc5": true, "description": "Protective shield. Evolves into Sacred Beasts Tower Shield.", "rarity": 1 },
     { "id": "kermetbubbles","name": "Keremet Bubbles",    "emoji": ":question:", "dlc5": true, "description": "Kermet's bubble attack. Evolves into Keremet Morbus.", "rarity": 1 },
     { "id": "familiarforge","name": "Familiar Forge",     "emoji": ":question:", "dlc5": true, "description": "Julia's devil familiar weapon.", "rarity": 1 },
     { "id": "endogears",    "name": "Endo Gears",         "emoji": ":question:", "dlc5": true, "description": "Clock component. Combine all four clock parts to forge Clock Tower.", "rarity": 1 },
@@ -2831,9 +2831,9 @@ window.vs = {
       "rarity": 20,
       "tips": "Unlock: Purchase each weapon from the Master Librarian at least once."
     },
-        { "id": "fleuret",          "name": "Fleuret",          "emoji": ":question:", "dlc6": true, "description": "Tsunanori's fencing sword. Evolves into Dress Sword chain.", "rarity": 1 },
+    { "id": "fleuret",          "name": "Fleuret",          "emoji": ":question:", "dlc6": true, "description": "Tsunanori's fencing sword. Evolves into Dress Sword chain.", "rarity": 1 },
     { "id": "supermissile",     "name": "Super Missile",    "emoji": ":question:", "dlc6": true, "description": "Diva No. 5's missile launcher. Evolves into Hydra Cannon chain.", "rarity": 1 },
-    { "id": "thesplashers",     "name": "The Splashers",    "emoji": ":question:", "dlc6": true, "description": "Dual blades. Evolves into Pursuant Blades.", "rarity": 1 },
+    { "id": "thesplashers", "name": "Splashers", "emoji": ":question:", "dlc6": true, "description": "Duration affects damage. Can glimmer the \"Dual Whirlwind\" tech.", "rarity": 50, "tips": "Unlock: Get Splashers to Level 6." },
     { "id": "flamberge",        "name": "Flamberge",        "emoji": ":question:", "dlc6": true, "description": "Final Emperor's great sword. Evolves into Zweihander chain.", "rarity": 1 },
     { "id": "punch6",           "name": "Punch",            "emoji": ":question:", "dlc6": true, "description": "Bonnie's martial arts. Evolves into Pressure Point chain.", "rarity": 1 },
     { "id": "kick6",            "name": "Kick",             "emoji": ":question:", "dlc6": true, "description": "Bonnie's kick. Evolves into Triangle Kick.", "rarity": 1 },
@@ -2937,15 +2937,6 @@ window.vs = {
       "description": "Cursed item. Amount affects Damage. Critical hits or changing movement direction ensure extra attacks.",
       "rarity": 50,
       "tips": "Unlock: Find Descent Into Misery in Red Moon Manor."
-    },
-    {
-      "id": "splashers",
-      "name": "Splashers",
-      "emoji": ":question:",
-      "dlc6": true,
-      "description": "Duration affects damage. Can glimmer the \"Dual Whirlwind\" tech.",
-      "rarity": 50,
-      "tips": "Unlock: Get Splashers to Level 6."
     },
     {
       "id": "infernolatro",
@@ -3580,13 +3571,15 @@ window.vs = {
     },
     {
       "id": "prism_",
-      "name": "Luminaire Luminaire",
+      "name": "Luminaire",
       "itemIds": [
         "prism",
         "growth"
       ],
       "emoji": ":LuminaireVS:",
-      "dlc2": true
+      "dlc2": true,
+      "description": "Evolved Prismatic Missile. Increases the value of gems and coins on the ground.",
+      "rarity": 1
     },
     {
       "id": "servant_",
@@ -3602,18 +3595,6 @@ window.vs = {
       "tips": "Requires Max: Skull'O Maniac."
     },
     {
-      "id": "luminaire2",
-      "name": "Luminaire",
-      "emoji": ":question:",
-      "dlc2": true,
-      "itemIds": [
-        "prism",
-        "growth"
-      ],
-      "description": "Evolved Prismatic Missile. Increases the value of gems and coins on the ground.",
-      "rarity": 1
-    },
-        {
       "id": "report_",
       "name": "Emergency Meeting",
       "itemIds": [
@@ -3831,18 +3812,18 @@ window.vs = {
     { "id": "hydrostormer",    "name": "Hydrostormer Tip",        "emoji": ":question:", "dlc5": true, "itemIds": ["dragonwhip","magnet"],             "description": "Evolved Dragon Water Whip. Sends torrents of water." },
     { "id": "tenebristonitrus","name": "Tenebris Tonitrus",       "emoji": ":question:", "dlc5": true, "itemIds": ["fulgur","amount"],                 "description": "Evolved Fulgur. Dark thunder strikes." },
     { "id": "pneumatempestas", "name": "Pneuma Tempestas",        "emoji": ":question:", "dlc5": true, "itemIds": ["galeforce","speed"],               "description": "Evolved Gale Force. Raging tempest of wind." },
-    { "id": "nitesco",         "name": "Nitesco",                 "emoji": ":question:", "dlc5": true, "itemIds": ["globus","growth"],                 "description": "Evolved Globus. Luminous orb bombardment." },
+    { "id": "nitesco", "name": "Nitesco", "emoji": ":question:", "dlc5": true, "itemIds": ["globus","cooldown"], "description": "Evolved Globus. Luminous orb bombardment." },
     { "id": "sacredbeasts",    "name": "Sacred Beasts Tower Shield","emoji": ":question:", "dlc5": true, "itemIds": ["guardiantarge","recovery"],     "description": "Evolved Guardian Targe. Divine beast-engraved tower shield." },
     { "id": "therpg",          "name": "The RPG",                 "emoji": ":question:", "dlc5": true, "itemIds": ["handgrenade5","area"],             "description": "Evolved Hand Grenade. Rocket-propelled devastation." },
     { "id": "nightmare",       "name": "Nightmare",               "emoji": ":question:", "dlc5": true, "itemIds": ["hexcastle","curse"],               "description": "Evolved Hex. Induces nightmarish effects on enemies." },
     { "id": "cocytus",         "name": "Cocytus",                 "emoji": ":question:", "dlc5": true, "itemIds": ["icefang","duration"],              "description": "Evolved Ice Fang. Freezes enemies in icy hell." },
     { "id": "wreckingball",    "name": "Wrecking Ball",           "emoji": ":question:", "dlc5": true, "itemIds": ["ironball","armor"],                "description": "Evolved Iron Ball. Massive demolishing impact." },
     { "id": "darkironshield",  "name": "Dark Iron Shield",        "emoji": ":question:", "dlc5": true, "itemIds": ["ironshield","parmaegis"],          "description": "Evolved Iron Shield. Dark-reinforced defensive shield." },
-    { "id": "longinus5",       "name": "Long Inus",               "emoji": ":question:", "dlc5": true, "itemIds": ["javelinc","wings"],                "description": "Evolved Javelin. Divinely charged lance." },
-    { "id": "mormegill",       "name": "Mormegill Tip",           "emoji": ":question:", "dlc5": true, "itemIds": ["jetblackwhip","greed"],            "description": "Evolved Jet Black Whip. Dark whip of legend." },
+    { "id": "longinus5", "name": "Long Inus", "emoji": ":question:", "dlc5": true, "itemIds": ["javelinc","duration"], "description": "Evolved Javelin. Divinely charged lance." },
+    { "id": "mormegill", "name": "Mormegil Tip", "emoji": ":question:", "dlc5": true, "itemIds": ["jetblackwhip","greed"], "description": "Evolved Jet Black Whip. Dark whip of legend." },
     { "id": "kermetmorbus",    "name": "Keremet Morbus",          "emoji": ":question:", "dlc5": true, "itemIds": ["kermetbubbles","armor"],           "description": "Evolved Keremet Bubbles. Infectious dark bubbles." },
     { "id": "volluminatio",    "name": "Vol Luminatio",           "emoji": ":question:", "dlc5": true, "itemIds": ["luminatio","growth"],              "description": "Intermediate evolution of Luminatio. Combine with Vol Umbra for Universitas." },
-    { "id": "volumbra",        "name": "Vol Umbra",               "emoji": ":question:", "dlc5": true, "itemIds": ["umbra5"],                          "description": "Intermediate evolution of Umbra. Combine with Vol Luminatio for Universitas." },
+    { "id": "volumbra", "name": "Vol Umbra", "emoji": ":question:", "dlc5": true, "itemIds": ["umbra5","magnet"], "description": "Intermediate evolution of Umbra. Combine with Vol Luminatio for Universitas." },
     { "id": "universitas",     "name": "Universitas",             "emoji": ":question:", "dlc5": true, "itemIds": ["volluminatio","volumbra"],          "description": "Union of Vol Luminatio and Vol Umbra. Light and dark united." },
     { "id": "stamazza",        "name": "Stamazza",                "emoji": ":question:", "dlc5": true, "itemIds": ["mace5","health"],                  "description": "Evolved Mace. Crushes enemies with tremendous force." },
     { "id": "acerbatus",       "name": "Acerbatus",               "emoji": ":question:", "dlc5": true, "itemIds": ["opticalshot","karomasmana"],       "description": "Evolved Optical Shot. Amplified dark energy blast." },
@@ -3854,41 +3835,17 @@ window.vs = {
     { "id": "jewelgun",        "name": "Jewel Gun",               "emoji": ":question:", "dlc5": true, "itemIds": ["silverrev","karomasmana"],         "description": "Evolved Silver Revolver. Fires jewel-powered shots." },
     { "id": "rapidusfio",      "name": "Rapidus Fio",             "emoji": ":question:", "dlc5": true, "itemIds": ["sonicdash","wings"],               "description": "Evolved Sonic Dash. Ferryman's swiftest strike." },
     { "id": "crissaegrim",     "name": "Crissaegrim Tip",         "emoji": ":question:", "dlc5": true, "itemIds": ["sonicwhip","curse"],               "description": "Evolved Sonic Whip. Legendary sword-whip of infinite speed." },
-    { "id": "moonflail",       "name": "Moon Flail",              "emoji": ":question:", "dlc5": true, "itemIds": ["starflail","recovery"],            "description": "Evolved Star Flail. Lunar-powered heavy strikes." },
+    { "id": "moonflail", "name": "Moon Rod", "emoji": ":question:", "dlc5": true, "itemIds": ["starflail","recovery"], "description": "Evolved Star Flail. Projectiles are shot in the faced direction.", "rarity": 1 },
     { "id": "gungnirsouris",   "name": "Gungnir-Souris",          "emoji": ":question:", "dlc5": true, "itemIds": ["trident5","amount"],               "description": "Evolved Trident. Divine spear that never misses." },
     { "id": "runesword",       "name": "Rune Sword",              "emoji": ":question:", "dlc5": true, "itemIds": ["tyrfing","might"],                 "description": "Evolved Tyrfing. Ancient rune-inscribed blade." },
     { "id": "aurablastertip",  "name": "Aurablaster Tip",         "emoji": ":question:", "dlc5": true, "itemIds": ["vanitaswhip","health"],            "description": "Evolved Vanitas Whip. Aura-charged whip tip." },
     { "id": "daybreakertip",   "name": "Daybreaker Tip",          "emoji": ":question:", "dlc5": true, "itemIds": ["vibhutiwhip","area"],              "description": "Evolved Vibhuti Whip. Sacred dawn-breaking whip." },
-    { "id": "sprinttornado",   "name": "Sprint Tornado Tip",      "emoji": ":question:", "dlc5": true, "itemIds": ["windwhip","speed"],                "description": "Evolved Wind Whip. Tornado sprint attack." },
+    { "id": "sprinttornado", "name": "Spirit Tornado Tip", "emoji": ":question:", "dlc5": true, "itemIds": ["windwhip","growth"], "description": "Evolved Wind Whip. Every 7th activation summons a spirit that violently collects XP gems for you.", "rarity": 1 },
     { "id": "mealticket",      "name": "Meal Ticket",             "emoji": ":question:", "dlc5": true, "itemIds": ["wineglass","revival"],             "description": "Evolved Wine Glass. Cursed meal restores the fallen." },
     { "id": "clocktower5",     "name": "Clock Tower",             "emoji": ":question:", "dlc5": true, "itemIds": ["endogears","peripendulum","myolift","epihead"], "description": "Union of the four clock parts. Death's ultimate weapon." },
     { "id": "volconfodere",    "name": "Vol Confodere",           "emoji": ":question:", "dlc5": true, "itemIds": ["confodere"],                       "description": "Intermediate evolution of Confodere." },
     { "id": "melioconfodere",  "name": "Melio Confodere",         "emoji": ":question:", "dlc5": true, "itemIds": ["volconfodere"],                    "description": "Final evolution of Confodere. Maximum power." },
 
-    {
-      "id": "spirittornadotip",
-      "name": "Spirit Tornado Tip",
-      "emoji": ":question:",
-      "dlc5": true,
-      "itemIds": [
-        "windwhip",
-        "growth"
-      ],
-      "description": "Evolved Wind Whip. Every 7th activation summons a spirit that violently collects XP gems for you.",
-      "rarity": 1
-    },
-    {
-      "id": "moonrod",
-      "name": "Moon Rod",
-      "emoji": ":question:",
-      "dlc5": true,
-      "itemIds": [
-        "starflail",
-        "recovery"
-      ],
-      "description": "Evolved Star Flail. Projectiles are shot in the faced direction.",
-      "rarity": 1
-    },
     {
       "id": "claimhsolais",
       "name": "Claimh Solais",
@@ -4105,11 +4062,11 @@ window.vs = {
       "description": "Gift of Alucard Swords. Absorbs and triggers all other equipped evolutions. Hovering shield damages enemies.",
       "rarity": 1
     },
-        { "id": "dresssword",       "name": "Dress Sword",        "emoji": ":question:", "dlc6": true, "itemIds": ["fleuret"],                "description": "Evolved Fleuret. Elegant fencing blade." },
+    { "id": "dresssword",       "name": "Dress Sword",        "emoji": ":question:", "dlc6": true, "itemIds": ["fleuret"],                "description": "Evolved Fleuret. Elegant fencing blade." },
     { "id": "espadaropera",     "name": "Espada Ropera",      "emoji": ":question:", "dlc6": true, "itemIds": ["dresssword"],             "description": "Final evolution of Fleuret chain. Nimble thrusting sword." },
     { "id": "hydracannon",      "name": "Hydra Cannon",       "emoji": ":question:", "dlc6": true, "itemIds": ["supermissile"],           "description": "Evolved Super Missile. Multi-headed rocket barrage." },
     { "id": "hyperionbazooka",  "name": "Hyperion Bazooka",   "emoji": ":question:", "dlc6": true, "itemIds": ["hydracannon"],            "description": "Final evolution of Super Missile chain. Cosmic destruction." },
-    { "id": "pursuantblades",   "name": "Pursuant Blades",    "emoji": ":question:", "dlc6": true, "itemIds": ["thesplashers","duration"],"description": "Evolved The Splashers. Pursuing dual blades." },
+    { "id": "pursuantblades", "name": "Pursuant Blades", "emoji": ":question:", "dlc6": true, "itemIds": ["thesplashers","duration"], "description": "Evolved Splashers. Can glimmer the \"Dual Torrent\" tech." },
     { "id": "zweihander",       "name": "Zweihander",         "emoji": ":question:", "dlc6": true, "itemIds": ["flamberge"],              "description": "Evolved Flamberge. Two-handed great sword." },
     { "id": "galatyn",          "name": "Galatyn",            "emoji": ":question:", "dlc6": true, "itemIds": ["zweihander"],             "description": "Final evolution of Flamberge chain. Legendary holy sword." },
     { "id": "pressurepoint",    "name": "Pressure Point",     "emoji": ":question:", "dlc6": true, "itemIds": ["punch6"],                 "description": "Evolved Punch. Strikes vital pressure points." },
