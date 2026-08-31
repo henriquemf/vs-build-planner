@@ -101,6 +101,11 @@ window.VSP = window.VSP || {}
     const missing = items.filter((item) => !withRules.has(item.id)).map((item) => item.id)
     if (!missing.length) return missing
 
+    /* Browsers refuse to expose cssRules for a local stylesheet when the page itself came
+       from file://, so the scan comes back empty and every item looks unsprited. A result
+       that implausible means the scan failed, not that the sprites are gone. */
+    if (missing.length > items.length / 2) return []
+
     const style = document.createElement('style')
     style.textContent = missing.map((id) => `.icon-${id}`).join(',') + `{background-image:url("${PLACEHOLDER_ICON}")}`
     const firstSheet = document.head.querySelector('link[rel="stylesheet"], style')

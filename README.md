@@ -80,6 +80,45 @@ vs-build-planner/
 
 ---
 
+## Testing locally
+
+Serve the folder over http and open it — any of these work:
+
+```bash
+npx serve .                 # then open the printed http://localhost:3000
+npx live-server .           # same, but reloads on save
+python -m http.server 8000  # then open http://localhost:8000
+```
+
+Opening `index.html` straight off disk also works. The only difference is that browsers
+refuse to expose stylesheet rules to a `file://` page, so the missing-sprite check quietly
+skips itself; everything else behaves the same.
+
+Before pushing:
+
+```bash
+node scripts/check.js
+```
+
+It parses every file in `data/` and `js/`, loads the dataset, and fails on a duplicate id,
+an `itemIds` pointing at something that does not exist, an evolution with no base weapon,
+a sprite file referenced by `css/icons.css` that is not on disk, a path in `index.html`
+that does not resolve, a file in `data/` or `js/` with no `<script>` tag (easy to forget,
+since the tags are listed by hand), a script tag that is not deferred, and a stale
+`data/character-gifs.js`. It exits non-zero, so it works as a pre-push hook too.
+
+What to click through by hand after a change:
+
+- pick a character — its weapon should appear in the slots and be undeletable
+- complete an evolution recipe — the weapon slot should switch to the evolved sprite
+- hover a tile — related tiles go yellow, helped/hurt tiles go green/red
+- hover a character card — the walk animation should play
+- pick a stage — its pickups fill the rows to the right
+- toggle a DLC off in SETTINGS — those tiles disappear
+- COPY LINK, then open the link in a new tab — the same build should load
+
+---
+
 ## Adding content by hand
 
 Most updates are just data. Add the entry to the right file in `data/`:
