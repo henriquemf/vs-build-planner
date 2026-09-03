@@ -371,7 +371,13 @@ window.vs.stages = [
       "spiritrings",
       "townsword6",
       "sanguinestar",
-      "intuition6"
+      "intuition6",
+      "might",
+      "growth",
+      "greed",
+      "duration",
+      "parmaegis",
+      "karomasmana"
     ]
   },
   {

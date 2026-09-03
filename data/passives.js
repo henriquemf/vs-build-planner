@@ -113,7 +113,7 @@ window.vs.passives = [
     "emoji": ":maskVS:",
     "description": "Character earns 10% more coins.",
     "isPowerUp": true,
-    "rarity": 70
+    "rarity": 100
   },
   {
     "id": "curse",
@@ -200,7 +200,7 @@ window.vs.passives = [
     "dlc5": true,
     "description": "Increases invulnerability duration after taking damage (+50ms per level, max 5 levels).",
     "isPowerUp": true,
-    "rarity": 10
+    "rarity": 40
   },
   {
     "id": "karomasmana",
@@ -209,7 +209,7 @@ window.vs.passives = [
     "dlc5": true,
     "description": "Increases Charm (+10) and Fever (+10%) per level.",
     "isPowerUp": true,
-    "rarity": 10
+    "rarity": 40
   },
   {
     "id": "chaosmalachite",
